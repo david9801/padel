@@ -1,6 +1,6 @@
 # Sistema de reservas de pistas de padel
 
-![Club de Padel](https://raw.githubusercontent.com/david9801/padel/master/storage/app/public/images/logo-padel.jpg "Club de Padel")
+![Club de Padel]([https://raw.githubusercontent.com/david9801/padel/master/storage/app/public/images/logo-padel.jpg](https://github.com/david9801/padel/blob/master/public/images/logo-padel.jpg) "Club de Padel")
 
 Este proyecto ha sido realizado con el fin educativo con el fin de avanzar en mi carrera profesional.
 
@@ -63,12 +63,10 @@ En el proceso de registro (darse de alta) se distingue 2 roles:admin y cliente
 
 ## Componentes del proyecto
 ### 1. Desde la navbar sin estar logueado
-Opciones
+Opciones->
 `Home`
 `About Us`
 `User`
 
-### 1. Desde la navbar si se esyá logueado
-Opciones
-Se desmuestra las opciones user y se añade la opcion:
-`Reserve`
+### 2. Desde la navbar si se está logueado
+Opciones-> Se desmuestra las opciones user y se añade la opcion: `Reserve`
