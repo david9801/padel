@@ -19,9 +19,8 @@
     <!-- Titulo-->
     <title>PADEL-@yield('title') </title>
 </head>
-
-<body  class="bg-light1">
-<nav class="navbar navbar-dark bg-dark fixed-top">
+<body  class="bg-light1" >
+<nav class="navbar navbar-dark bg-dark fixed-top" >
     <div class="container-fluid">
         <a class="navbar-brand" href="{{route('welcome')}}"> PadelReserve <i class="bi bi-calendar-plus"></i></a>
         @auth
@@ -92,7 +91,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 
 <footer id="foo" >
-<div class="card text-center" style="background-color: #021318;">
+<div class="card text-center" style="background-color: #021318; overflow: hidden;">
     <h5 class="card-header">2023</h5>
     <div class="card-body">
         <h5 class="card-title">Página web para reservar pistal de padel hecha con laravel 8</h5>
