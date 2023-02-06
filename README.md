@@ -1,6 +1,6 @@
 # Sistema de reservas de pistas de padel
 
-![Catalogo de productos](https://raw.githubusercontent.com/delarosamora/product-catalog/master/storage/app/public/image-site.jpg "Catalogo de productos")
+![Club de Padel](https://raw.githubusercontent.com/david9801/padel/master/storage/app/public/logo-padel.jpg "Club de Padel")
 
 Este proyecto ha sido realizado con el fin educativo con el fin de avanzar en mi carrera profesional.
 
@@ -9,19 +9,13 @@ Este proyecto ha sido realizado con el fin educativo con el fin de avanzar en mi
 <figure>
     <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg"
          alt="Laravel" width="300" height="100">
-    <figcaption>Laravel 8.0</figcaption>
+    <figcaption>Laravel 7.0</figcaption>
 </figure>
 
 <figure>
     <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png"
-         alt="Boostrap 5.0" width="200" height="150">
-    <figcaption>Boostrap 5.0</figcaption>
-</figure>
-
-<figure>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/JQuery-Logo.svg"
-         alt="Jquery"  width="300">
-    <figcaption>Jquery</figcaption>
+         alt="Boostrap 5.3" width="200" height="150">
+    <figcaption>Boostrap 5.3</figcaption>
 </figure>
 
 ## Instalación
@@ -67,4 +61,14 @@ En el proceso de registro (darse de alta) se distingue 2 roles:admin y cliente
 
 `php artisan db:seed --class=RolesTableSeeder`
 
+## Componentes del proyecto
+### 1. Desde la navbar sin estar logueado
+Opciones
+`Home`
+`About Us`
+`User`
 
+### 1. Desde la navbar si se esyá logueado
+Opciones
+Se desmuestra las opciones user y se añade la opcion:
+`Reserve`
