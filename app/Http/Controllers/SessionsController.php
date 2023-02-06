@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 
-use http\Client\Curl\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -46,14 +46,16 @@ class SessionsController extends Controller
 
     public function destroy($id)
     {
-        Log::error('error1');
-
-        $user = User::find($id);
-        Log::error('error2');
-        $user->delete();
-        Log::error('error3');
-        return redirect()->route('goto-Register');
+        try {
+            $user = User::find($id);
+            $user->delete();
+            return redirect()->route('goto-Register');
+        } catch (\Exception $e) {
+            Log::error("Error al eliminar usuario: {$e->getMessage()}");
+            return redirect()->back()->with('error', 'Ocurrió un error al intentar eliminar el usuario');
+        }
     }
+
 
 
 }

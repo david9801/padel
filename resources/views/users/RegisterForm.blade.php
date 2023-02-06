@@ -7,7 +7,7 @@
             @csrf
             <div class="mb-3">
             <label for="exampleInputNick" class="form-label">Nick user</label>
-            <input type="text" class="form-control" id="exampleInputNick"  style="background-color:deepskyblue;" name="name">
+            <input type="text" class="form-control" id="exampleInputNick"  name="name">
             </div>
                 <div class="mb-3" >
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -16,7 +16,7 @@
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1"style="background-color:deepskyblue;" name="password">
+                <input type="password" class="form-control" id="exampleInputPassword1" name="password">
             </div>
             <div class="mb-3 form-check" id="izq2" >
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">

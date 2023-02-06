@@ -23,13 +23,12 @@
 <body  class="bg-light1">
 <nav class="navbar navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{route('welcome')}}"> PadelReserve <i class="bi bi-cart-plus"></i></a>
+        <a class="navbar-brand" href="{{route('welcome')}}"> PadelReserve <i class="bi bi-calendar-plus"></i></a>
         @auth
             <form action="{{route('logout')}}" method="POST" class="text-center">
-                <button type="submit" class="btn btn-primary" > <i class="fa-solid fa-right-from-bracket"> Usuario {{Auth::user()->name}}</i> </button>
+                <button type="submit" class="btn btn-light" > <i class="fa-solid fa-right-from-bracket"> Usuario {{Auth::user()->name}}</i> </button>
                 @csrf
             </form>
-
         @endauth
 
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
@@ -37,7 +36,7 @@
         </button>
         <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Options</h5>
+                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">ACTIONS</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
@@ -48,15 +47,24 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{route('about')}}">  <i class="bi bi-eyeglasses"></i>  About us</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{route('carrousel')}}">  <i class="bi bi-image-fill"></i>  Images</a>
+                    </li>
+
                     @auth()
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{route('goto-reserve')}}"> <i class="bi bi-calendar-plus"></i> Reserves</a>
                     </li>
                     @endauth
-                    @guest()
                     <li class="nav-item dropdown" aria-current="page">
                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"> <i class="bi bi-people-fill"></i>  Users   </a>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-current="page">
+                            @auth()
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="{{route('admin')}}">   Admin account  </a>
+                                </li>
+                            @endauth
+                            @guest()
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="{{route('goto-Register')}}">   Register  </a>
                             </li>
@@ -64,8 +72,9 @@
                                 <a class="nav-link active" aria-current="page" href="{{route('goto-Login')}}">   Login  </a>
                             </li>
                         </ul>
+                        @endguest
                     </li>
-                    @endguest
+
                 </ul>
                 <form class="d-flex mt-3" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
