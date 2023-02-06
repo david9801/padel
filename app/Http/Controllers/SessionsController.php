@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 
 class SessionsController extends Controller
@@ -37,6 +38,21 @@ class SessionsController extends Controller
         // Inicio de sesión fallido
         return back()->withErrors(['email' => 'Estas credenciales no coinciden con nuestros registros']);
     }
+    public function edit(Request $request,$id){
+        $user = User::find($id);
+        Log::error('antes de validar');
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+        Log::error('despues de validar');
+        $user->password = Hash::make($credentials['password']);
+        Log::error('post hash');
+        $user->save();
+
+        return redirect()->route('admin')->with('success', 'Contraseña actualizada correctamente');
+    }
+
 
     public function logout(Request $request)
     {

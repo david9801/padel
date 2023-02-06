@@ -44,5 +44,5 @@ Route::POST('/do-login',[SessionsController::class,'dologin'])->name('do-login')
 
 Route::POST('/logout',[SessionsController::class,'logout'])->name('logout')->middleware('auth');
 Route::delete('/usuarios/{id}',[SessionsController::class,'destroy'])->name('delete')->middleware('auth');
-
+Route::put('/user-edit/{id}',[SessionsController::class,'edit'])->name('edit-user')->middleware('auth');
 
