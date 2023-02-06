@@ -1,0 +1,41 @@
+
+#form1,#form2{
+    background-color: #021318;
+    color:lightgoldenrodyellow;
+    text-align: center;
+    width: 500px;
+}
+#div1,#div2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+
+}
+#izq1,#izq2{
+    text-align: left;
+}
+
+#foo {
+    background-color: #021318;
+    color:lightgoldenrodyellow;
+    overflow: scroll;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.bg-light1 {
+    background-color: #021318;
+}
+
+.card{
+    background-color: #021318;
+    color:lightgoldenrodyellow;
+    overflow: scroll;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
