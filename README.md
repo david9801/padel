@@ -1,6 +1,6 @@
 # Sistema de reservas de pistas de padel
 
-![Club de Padel]([https://raw.githubusercontent.com/david9801/padel/master/storage/app/public/images/logo-padel.jpg](https://github.com/david9801/padel/blob/master/public/images/logo-padel.jpg) "Club de Padel")
+![Club de Padel]([https://raw.githubusercontent.com/david9801/padel/master/storage/app/public/images/logo-padel.jpg] "Club de Padel")
 
 Este proyecto ha sido realizado con el fin educativo con el fin de avanzar en mi carrera profesional.
 
