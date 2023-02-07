@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\RedirectResponse;
 
 class SessionsController extends Controller
@@ -38,19 +39,34 @@ class SessionsController extends Controller
         // Inicio de sesión fallido
         return back()->withErrors(['email' => 'Estas credenciales no coinciden con nuestros registros']);
     }
-    public function edit(Request $request,$id){
-        $user = User::find($id);
-        Log::error('antes de validar');
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
+    public function edit(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'password' => ['required','confirmed'],
+            'password_confirmation' => ['required', 'same:password'],
         ]);
-        Log::error('despues de validar');
-        $user->password = Hash::make($credentials['password']);
-        Log::error('post hash');
+        $validator->after(function ($validator) {
+            if ($validator->errors()->has('password')) {
+                $validator->errors()->add('password', 'Por favor, ingrese las contraseñas iguales');
+            }
+        });
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+        if (!$validator->passes()) {
+            if ($request->password !== $request->password_confirmation) {
+                $validator->errors()->add('password_confirmation', 'Las contraseñas deben ser iguales');
+            }
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $user = User::findOrFail($id);
+        $user->password = Hash::make($request->password);
         $user->save();
 
-        return redirect()->route('admin')->with('success', 'Contraseña actualizada correctamente');
+        return redirect()->route('goto-reserve')->with('success', 'Password updated successfully!');
     }
 
 
