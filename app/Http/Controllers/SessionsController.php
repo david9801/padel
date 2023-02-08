@@ -31,7 +31,7 @@ class SessionsController extends Controller
         if (Auth::attempt($credentials)) {
             Log::error('flag2');
             // Inicio de sesión exitoso
-            return redirect()->route('goto-reserve');
+            return redirect()->route('reserves.index');
         }
 
         Log::error('flag1');
@@ -66,7 +66,7 @@ class SessionsController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        return redirect()->route('goto-reserve')->with('success', 'Password updated successfully!');
+        return redirect()->route('reserves.index')->with('success', 'Password updated successfully!');
     }
 
 

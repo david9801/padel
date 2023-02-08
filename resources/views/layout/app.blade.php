@@ -52,8 +52,12 @@
 
                     @auth()
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{route('goto-reserve')}}"> <i class="bi bi-calendar-plus"></i> Reserves</a>
+                        <a class="nav-link active" aria-current="page" href="{{route('reserves.index')}}"> <i class="bi bi-calendar-plus"></i> Mis reservas</a>
                     </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{route('reserves.create')}}"> <i class="bi bi-patch-plus-fill"></i> Crear reservas</a>
+                        </li>
+
                     @endauth
                     <li class="nav-item dropdown" aria-current="page">
                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"> <i class="bi bi-people-fill"></i>  Users   </a>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\ReservesController;
 use App\Mail\WelcomeMail;
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +29,7 @@ Route::get('/galeria', function () {
 })->name('carrousel');
 
 
-Route::get('/goto-reserves', function () {
-    return view('reserve.reserves');
-})->name('goto-reserve')->middleware('auth');
+
 
 Route::get('/goto-admin', function () {
     return view('users.AdminUser');
@@ -46,3 +45,48 @@ Route::POST('/logout',[SessionsController::class,'logout'])->name('logout')->mid
 Route::delete('/usuarios/{id}',[SessionsController::class,'destroy'])->name('delete')->middleware('auth');
 Route::put('/user-edit/{id}',[SessionsController::class,'edit'])->name('edit-user')->middleware('auth');
 
+Route::resource('reserves',ReservesController::class)->middleware('auth');
+
+
+/*
++--------+-----------+------------------------+------------------+-------------------------------------------------+------------+
+| Domain | Method    | URI                    | Name             | Action                                          | Middleware |
++--------+-----------+------------------------+------------------+-------------------------------------------------+------------+
+|        | GET|HEAD  | /                      | welcome          | Closure                                         | web        |
+|        | GET|HEAD  | aboutus                | about            | Closure                                         | web        |
+|        | GET|HEAD  | api/user               |                  | Closure                                         | api        |
+|        |           |                        |                  |                                                 | auth:api   |
+|        | POST      | do-login               | do-login         | App\Http\Controllers\SessionsController@dologin | web        |
+|        |           |                        |                  |                                                 | guest      |
+|        | POST      | do-register            | do-register      | App\Http\Controllers\RegisterController@store   | web        |
+|        |           |                        |                  |                                                 | guest      |
+|        | GET|HEAD  | galeria                | carrousel        | Closure                                         | web        |
+|        | GET|HEAD  | goto-admin             | admin            | Closure                                         | web        |
+|        |           |                        |                  |                                                 | auth       |
+|        | GET|HEAD  | login                  | goto-Login       | App\Http\Controllers\SessionsController@login   | web        |
+|        |           |                        |                  |                                                 | guest      |
+|        | POST      | logout                 | logout           | App\Http\Controllers\SessionsController@logout  | web        |
+|        |           |                        |                  |                                                 | auth       |
+|        | GET|HEAD  | register               | goto-Register    | App\Http\Controllers\RegisterController@create  | web        |
+|        |           |                        |                  |                                                 | guest      |
+|        | GET|HEAD  | reserves               | reserves.index   | App\Http\Controllers\ReservesController@index   | web        |
+|        |           |                        |                  |                                                 | auth       |
+|        | POST      | reserves               | reserves.store   | App\Http\Controllers\ReservesController@store   | web        |
+|        |           |                        |                  |                                                 | auth       |
+|        | GET|HEAD  | reserves/create        | reserves.create  | App\Http\Controllers\ReservesController@create  | web        |
+|        |           |                        |                  |                                                 | auth       |
+|        | GET|HEAD  | reserves/{reserf}      | reserves.show    | App\Http\Controllers\ReservesController@show    | web        |
+|        |           |                        |                  |                                                 | auth       |
+|        | PUT|PATCH | reserves/{reserf}      | reserves.update  | App\Http\Controllers\ReservesController@update  | web        |
+|        |           |                        |                  |                                                 | auth       |
+|        | DELETE    | reserves/{reserf}      | reserves.destroy | App\Http\Controllers\ReservesController@destroy | web        |
+|        |           |                        |                  |                                                 | auth       |
+|        | GET|HEAD  | reserves/{reserf}/edit | reserves.edit    | App\Http\Controllers\ReservesController@edit    | web        |
+|        |           |                        |                  |                                                 | auth       |
+|        | PUT       | user-edit/{id}         | edit-user        | App\Http\Controllers\SessionsController@edit    | web        |
+|        |           |                        |                  |                                                 | auth       |
+|        | DELETE    | usuarios/{id}          | delete           | App\Http\Controllers\SessionsController@destroy | web        |
+|        |           |                        |                  |                                                 | auth       |
++--------+-----------+------------------------+------------------+-------------------------------------------------+------------+
+
+*/
