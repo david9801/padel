@@ -19,7 +19,6 @@
 #foo {
     background-color: #021318;
     color:lightgoldenrodyellow;
-    overflow: scroll;
     position: absolute;
     bottom: 0;
     width: 100%;

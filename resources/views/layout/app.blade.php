@@ -19,7 +19,7 @@
     <!-- Titulo-->
     <title>PADEL-@yield('title') </title>
 </head>
-<body  class="bg-light1" >
+<body  class="bg-light1 d-flex flex-column min-vh-100" >
 <nav class="navbar navbar-dark bg-dark fixed-top" >
     <div class="container-fluid">
         <a class="navbar-brand" href="{{route('welcome')}}"> PadelReserve <i class="bi bi-calendar-plus"></i></a>
@@ -87,22 +87,23 @@
         </div>
     </div>
 </nav>
+@yield('content')
 
-
-
-</body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 
 <footer id="foo" >
-<div class="card text-center" style="background-color: #021318; overflow: hidden;">
-    <h5 class="card-header">2023</h5>
-    <div class="card-body">
-        <h5 class="card-title">Página web para reservar pistal de padel hecha con laravel 8</h5>
-        <p class="card-text">¡Sígueme en GITHUB!</p>
-        <a href="https://github.com/david9801" class="btn btn-primary">Go to my github</a>
+    <div class="card text-center" style="background-color: #021318; overflow: hidden;">
+        <h5 class="card-header">2023</h5>
+        <div class="card-body">
+            <h5 class="card-title">Página web para reservar pistal de padel hecha con laravel 8</h5>
+            <p class="card-text">¡Sígueme en GITHUB!</p>
+            <a href="https://github.com/david9801" class="btn btn-primary">Go to my github</a>
+        </div>
     </div>
 </footer>
+</body>
+
 
 </html>
-@yield('content')
+

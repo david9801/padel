@@ -36,7 +36,11 @@
         #table-create .bi {
             font-size: 9px;
         }
+        #court-selector{
+
+        }
     </style>
+
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -48,17 +52,20 @@
         </div>
     @endif
 
+
+
+    <select id="court-selector">
+        <option value="court-1">Pista 1</option>
+        <option value="court-2">Pista 2</option>
+        <option value="court-3">Pista 3</option>
+    </select>
     <table class="table table-bordered" id="table-create">
         <thead>
             <tr>
                 <th scope="col">Horario</th>
-                <th scope="col">Lunes</th>
-                <th scope="col">Martes</th>
-                <th scope="col">Miércoles</th>
-                <th scope="col">Jueves</th>
-                <th scope="col">Viernes</th>
-                <th scope="col">Sábado</th>
-                <th scope="col">Domingo</th>
+                @for($i=1; $i<=7; $i++)
+                    <th scope="col">{{ trans("days.$i") }}</th>
+                @endfor
             </tr>
         </thead>
         <tbody>
@@ -79,11 +86,10 @@
 
         <form action="{{route('reserves.store')}}" method="POST" class="text-center">
         @csrf
-        <h2> Crear Reserva</h2>
         <input type="text" class="bg-light-blue text-center" placeholder="Title" name="title">
-        <input type="text" class="bg-light-blue text-center" placeholder="Start time" name="start_time">
+        <input type="datetime-local" class="bg-light-blue text-center" placeholder="Start time" name="start_time">
         <input type="datetime-local" class="bg-light-blue text-center" placeholder="End Time" name="end_time">
-        <input type="datetime-local" class="bg-light-blue text-center" placeholder="Court number" name="court_number">
+        <input type="text" class="bg-light-blue text-center" placeholder="Court number" name="court_number">
         <input type="text" class="bg-light-blue text-center" placeholder="Email" name="email">
         <button type="submit" class="btn btn-primary" > SEND</button>
     </form>
