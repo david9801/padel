@@ -47,6 +47,9 @@ Route::put('/user-edit/{id}',[SessionsController::class,'edit'])->name('edit-use
 
 Route::resource('reserves',ReservesController::class)->middleware('auth');
 
+Route::get('/goto-reserve', function () {
+    return view('reserve.send');
+})->name('go-reserve')->middleware('auth');
 
 /*
 +--------+-----------+------------------------+------------------+-------------------------------------------------+------------+

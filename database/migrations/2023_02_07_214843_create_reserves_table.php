@@ -18,7 +18,7 @@ class CreateReservesTable extends Migration
             $table->string('title')->nullable();
             $table->DateTime('start_time');
             $table->DateTime('end_time');
-            $table->integer('court_number');
+            $table->string('court_number')->nullable();
             $table->string('email')->unique();
         });
     }

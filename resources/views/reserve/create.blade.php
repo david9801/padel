@@ -1,8 +1,6 @@
 @extends('layout.app')
 @section('title','Crear Reservas')
-
 @section('content')
-
     <style>
         #table-create {
             background-color: #fff;
@@ -40,8 +38,6 @@
 
         }
     </style>
-
-
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -51,14 +47,6 @@
             </ul>
         </div>
     @endif
-
-
-
-    <select id="court-selector">
-        <option value="court-1">Pista 1</option>
-        <option value="court-2">Pista 2</option>
-        <option value="court-3">Pista 3</option>
-    </select>
     <table class="table table-bordered" id="table-create">
         <thead>
             <tr>
@@ -72,27 +60,25 @@
             @for($i = 11; $i < 21; $i++)
                 <tr>
                     <td scope="row">{{ $i }}:00</td>
-                    <td><button class="btn btn-primary"><i class="bi bi-alarm-fill"></i></button></td>
-                    <td><button class="btn btn-primary"><i class="bi bi-alarm-fill"></i></button></td>
-                    <td><button class="btn btn-primary"><i class="bi bi-alarm-fill"></i></button></td>
-                    <td><button class="btn btn-primary"><i class="bi bi-alarm-fill"></i></button></td>
-                    <td><button class="btn btn-primary"><i class="bi bi-alarm-fill"></i></button></td>
-                    <td><button class="btn btn-primary"><i class="bi bi-alarm-fill"></i></button></td>
-                    <td><button class="btn btn-primary"><i class="bi bi-alarm-fill"></i></button></td>
+                    <form action="{{route('go-reserve')}}" method="get">
+                        @csrf
+                        <td><button class="btn btn-primary"><i class="bi bi-alarm-fill"></i></button></td>
+                        <td><button class="btn btn-primary" href="{{route('go-reserve')}}"><i class="bi bi-alarm-fill"></i></button></td>
+                        <td><button class="btn btn-primary" href="{{route('go-reserve')}}"><i class="bi bi-alarm-fill"></i></button></td>
+                        <td><button class="btn btn-primary" href="{{route('go-reserve')}}"><i class="bi bi-alarm-fill"></i></button></td>
+                        <td><button class="btn btn-primary" href="{{route('go-reserve')}}"><i class="bi bi-alarm-fill"></i></button></td>
+                        <td><button class="btn btn-primary" href="{{route('go-reserve')}}"><i class="bi bi-alarm-fill"></i></button></td>
+                        <td><button class="btn btn-primary" href="{{route('go-reserve')}}"><i class="bi bi-alarm-fill"></i></button></td>
+                    </form>
                 </tr>
             @endfor
         </tbody>
-    </table>
-
-        <form action="{{route('reserves.store')}}" method="POST" class="text-center">
-        @csrf
-        <input type="text" class="bg-light-blue text-center" placeholder="Title" name="title">
-        <input type="datetime-local" class="bg-light-blue text-center" placeholder="Start time" name="start_time">
-        <input type="datetime-local" class="bg-light-blue text-center" placeholder="End Time" name="end_time">
-        <input type="text" class="bg-light-blue text-center" placeholder="Court number" name="court_number">
-        <input type="text" class="bg-light-blue text-center" placeholder="Email" name="email">
-        <button type="submit" class="btn btn-primary" > SEND</button>
-    </form>
-
-
 @endsection
+
+        <!--"
+        <select type="select"  name="user_id" class="bg-light-blue text-center">
+            @foreach(\App\Models\User::all() as $user)
+        <option value = "{{$user->id}}"  >     {{$user->name}}    </option>
+            @endforeach
+        </select>
+        "-->
