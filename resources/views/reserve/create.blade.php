@@ -60,25 +60,19 @@
             @for($i = 11; $i < 21; $i++)
                 <tr>
                     <td scope="row">{{ $i }}:00</td>
-                    <form action="{{route('go-reserve')}}" method="get">
+                    <form action="{{route('go-reserve')}}" method="post">
                         @csrf
                         <td><button class="btn btn-primary"><i class="bi bi-alarm-fill"></i></button></td>
-                        <td><button class="btn btn-primary" href="{{route('go-reserve')}}"><i class="bi bi-alarm-fill"></i></button></td>
-                        <td><button class="btn btn-primary" href="{{route('go-reserve')}}"><i class="bi bi-alarm-fill"></i></button></td>
-                        <td><button class="btn btn-primary" href="{{route('go-reserve')}}"><i class="bi bi-alarm-fill"></i></button></td>
-                        <td><button class="btn btn-primary" href="{{route('go-reserve')}}"><i class="bi bi-alarm-fill"></i></button></td>
-                        <td><button class="btn btn-primary" href="{{route('go-reserve')}}"><i class="bi bi-alarm-fill"></i></button></td>
-                        <td><button class="btn btn-primary" href="{{route('go-reserve')}}"><i class="bi bi-alarm-fill"></i></button></td>
+                        <td><button class="btn btn-primary" ><i class="bi bi-alarm-fill"></i></button></td>
+                        <td><button class="btn btn-primary" ><i class="bi bi-alarm-fill"></i></button></td>
+                        <td><button class="btn btn-primary" ><i class="bi bi-alarm-fill"></i></button></td>
+                        <td><button class="btn btn-primary" ><i class="bi bi-alarm-fill"></i></button></td>
+                        <td><button class="btn btn-primary" ><i class="bi bi-alarm-fill"></i></button></td>
+                        <td><button class="btn btn-primary" ><i class="bi bi-alarm-fill"></i></button></td>
                     </form>
                 </tr>
             @endfor
         </tbody>
 @endsection
 
-        <!--"
-        <select type="select"  name="user_id" class="bg-light-blue text-center">
-            @foreach(\App\Models\User::all() as $user)
-        <option value = "{{$user->id}}"  >     {{$user->name}}    </option>
-            @endforeach
-        </select>
-        "-->
+

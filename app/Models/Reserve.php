@@ -14,6 +14,11 @@ class Reserve extends Model
         'end_time',
         'court_number',
         'email',
+        'user_id'
     ];
+    public function user(){
+        return $this->belongsTo(User::class,'user_id');
+        //una reserva pertenece a un solo user
+    }
 
 }

@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
-
+use Illuminate\Database\Eloquent\Model;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable,HasRoles;
@@ -46,8 +46,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-
+    //Depende de las reglas que queramos-> si queremos que un usuario pueda reservar mas de una vez (me parece mas funcional)->
+    //-> Entonces hacemos una relacion uno a muchos. Un usuario puede hacer varias reservas. Una reserva solo esta hecha por un usuario
+    public function reserveS(){
+        return $this->hasMany(Reserve::class,'user_id');
+        //user tiene muchos productos
+    }
 }
 
 

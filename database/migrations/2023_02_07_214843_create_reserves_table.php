@@ -19,7 +19,12 @@ class CreateReservesTable extends Migration
             $table->DateTime('start_time');
             $table->DateTime('end_time');
             $table->string('court_number')->nullable();
-            $table->string('email')->unique();
+            $table->string('email');
+            $table->timestamps();
+            $table->foreignId('user_id')
+                ->nullable()
+                ->constrained('users');
+            //user_id es un id foraneo de la tabla reserves que va asociada a la tabla users
         });
     }
 
