@@ -28,9 +28,6 @@ Route::get('/galeria', function () {
     return view('explain.gallery');
 })->name('carrousel');
 
-
-
-
 Route::get('/goto-admin', function () {
     return view('users.AdminUser');
 })->name('admin')->middleware('auth');
@@ -47,9 +44,9 @@ Route::put('/user-edit/{id}',[SessionsController::class,'edit'])->name('edit-use
 
 Route::resource('reserves',ReservesController::class)->middleware('auth');
 
-Route::post('/goto-reserve', function () {
-    return view('reserve.send');
-})->name('go-reserve')->middleware('auth');
+Route::get('/goto-reserve/{start_time}', function ($start_time) {
+    return view('reserve.send',['start_time' => $start_time]);
+})->name('send')->middleware('auth');
 
 /*
 +--------+-----------+------------------------+------------------+-------------------------------------------------+------------+

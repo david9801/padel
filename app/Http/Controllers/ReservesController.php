@@ -51,6 +51,7 @@ class ReservesController extends Controller
         return redirect()->route('reserves.index')->with('success', 'Reservation created successfully.');
     }
 
+
     public function destroy($id)
     {
         $reservation = Reserve::findOrFail($id);

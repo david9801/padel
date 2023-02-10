@@ -13,18 +13,16 @@
         }
     </style>
 
-
     <form action="{{route('reserves.store')}}" method="post" class="text-center">
         @csrf
         <input type="text" class="bg-light-blue text-center" placeholder="Title" name="title">
-        <input type="datetime-local" class="bg-light-blue text-center" placeholder="Start time" name="start_time">
-        <input type="datetime-local" class="bg-light-blue text-center" placeholder="End time" name="end_time">
+        <input type="datetime-local" readonly class="bg-light-blue text-center" name="start_time" value="{{ date('Y-m-d\TH:i', strtotime($start_time= Request::segment(2))) }}">
+        <input type="datetime-local" readonly class="bg-light-blue text-center" name="end_time" value="{{ date('Y-m-d\TH:i', strtotime($start_time= Request::segment(2).'+1hour' )) }}">
         <input type="number" class="bg-light-blue text-center" placeholder="Court number" name="court_number">
         @if (auth()->check())
-        <input type="text" class="bg-light-blue text-center" value="{{$email = \App\Models\User::find(1)->email}}" name="email">
+        <input type="text" readonly  class="bg-light-blue text-center" value="{{$email = \App\Models\User::find(1)->email}}" name="email">
         @endif
         <button type="submit" class="btn btn-primary" > SEND</button>
-
     </form>
 @endsection
 <!--"

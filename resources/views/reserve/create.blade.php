@@ -60,16 +60,52 @@
             @for($i = 11; $i < 21; $i++)
                 <tr>
                     <td scope="row">{{ $i }}:00</td>
-                    <form action="{{route('go-reserve')}}" method="post">
-                        @csrf
-                        <td><button class="btn btn-primary"><i class="bi bi-alarm-fill"></i></button></td>
-                        <td><button class="btn btn-primary" ><i class="bi bi-alarm-fill"></i></button></td>
-                        <td><button class="btn btn-primary" ><i class="bi bi-alarm-fill"></i></button></td>
-                        <td><button class="btn btn-primary" ><i class="bi bi-alarm-fill"></i></button></td>
-                        <td><button class="btn btn-primary" ><i class="bi bi-alarm-fill"></i></button></td>
-                        <td><button class="btn btn-primary" ><i class="bi bi-alarm-fill"></i></button></td>
-                        <td><button class="btn btn-primary" ><i class="bi bi-alarm-fill"></i></button></td>
-                    </form>
+                    @php
+                        $selectedDate = $i . ':00';
+                    @endphp
+                    <td>
+                        <a href="{{route('send', ['start_time' => $selectedDate])}}" method="get">
+                                @csrf
+                                <button class="btn btn-primary"><i class="bi bi-alarm-fill"></i></button>
+                            </a>
+                    </td>
+                    <td>
+                        <a href="{{route('send', ['start_time' => $selectedDate])}}" method="get">
+                            @csrf
+                            <button class="btn btn-primary"><i class="bi bi-alarm-fill"></i></button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{route('send', ['start_time' => $selectedDate])}}" method="get">
+                            @csrf
+                            <button class="btn btn-primary"><i class="bi bi-alarm-fill"></i></button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{route('send', ['start_time' => $selectedDate])}}" method="get">
+                            @csrf
+                            <button class="btn btn-primary"><i class="bi bi-alarm-fill"></i></button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{route('send', ['start_time' => $selectedDate])}}" method="get">
+                            @csrf
+                            <button class="btn btn-primary"><i class="bi bi-alarm-fill"></i></button>
+                        </a>
+                    </td>
+                    <td>
+                        <a
+                        <a href="{{route('send', ['start_time' => $selectedDate])}}" method="get">
+                            @csrf
+                            <button class="btn btn-primary"><i class="bi bi-alarm-fill"></i></button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{route('send', ['start_time' => $selectedDate])}}" method="get">
+                            @csrf
+                            <button class="btn btn-primary"><i class="bi bi-alarm-fill"></i></button>
+                        </a>
+                    </td>
                 </tr>
             @endfor
         </tbody>
