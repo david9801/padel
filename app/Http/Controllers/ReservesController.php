@@ -45,7 +45,7 @@ class ReservesController extends Controller
         $reserve->start_time = $request->start_time;
         $reserve->end_time = $request->end_time;
         $reserve->court_number = $request->court_number;
-        $reserve->email = $request->email;
+        $reserve->email = Auth::user()->email;
         $reserve->user_id = Auth::user()->id;
         $reserve->save();
         return redirect()->route('reserves.index')->with('success', 'Reservation created successfully.');
