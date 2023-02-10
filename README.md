@@ -9,7 +9,7 @@ Este proyecto ha sido realizado con el fin educativo con el fin de avanzar en mi
 <figure>
     <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg"
          alt="Laravel" width="300" height="100">
-    <figcaption>Laravel 7.0</figcaption>
+    <figcaption>Laravel 8.0</figcaption>
 </figure>
 
 <figure>
@@ -70,3 +70,8 @@ Opciones->
 
 ### 2. Desde la navbar si se está logueado
 Opciones-> Se desmuestra las opciones user y se añade la opcion: `Reserve`
+
+## Consideraciones
+Se han hecho las siguientes consideraciones para el proyecto
+### Relaciones
+Un usuario pùede reservar varias pistas, una pista solo puede ser reservada por un usuario. Además de momento el num_court no es relevante hasta que siga avanzando en el proyecto
