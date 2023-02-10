@@ -17,8 +17,8 @@
     <form action="{{route('reserves.store')}}" method="post" class="text-center">
         @csrf
         <input type="text" class="bg-light-blue text-center" placeholder="Title" name="title">
-        <input type="datetime-local" class="bg-light-blue text-center" placeholder="start time" name="start_time">
-        <input type="datetime-local" class="bg-light-blue text-center" placeholder="end time" name="end_time">
+        <input type="datetime-local" class="bg-light-blue text-center" placeholder="Start time" name="start_time">
+        <input type="datetime-local" class="bg-light-blue text-center" placeholder="End time" name="end_time">
         <input type="number" class="bg-light-blue text-center" placeholder="Court number" name="court_number">
         @if (auth()->check())
         <input type="text" class="bg-light-blue text-center" value="{{$email = \App\Models\User::find(1)->email}}" name="email">
