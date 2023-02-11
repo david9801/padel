@@ -5,6 +5,8 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\ReservesController;
 use App\Mail\WelcomeMail;
+use App\Http\Controllers\Auth\VerificationController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,7 +50,9 @@ Route::get('/goto-reserve/{start_time}', function ($start_time) {
     return view('reserve.send',['start_time' => $start_time]);
 })->name('send')->middleware('auth');
 
-
+Route::get('email/verify', [VerificationController::class,'show'])->name('verification.notice');
+Route::get('email/verify/{id}', [VerificationController::class,'verify'])->name('verification.verify');
+Route::get('email/resend', [VerificationController::class,'resend'])->name('verification.resend');
 
 /*
 +--------+-----------+------------------------+------------------+-------------------------------------------------+------------+
@@ -89,6 +93,9 @@ Route::get('/goto-reserve/{start_time}', function ($start_time) {
 |        |           |                        |                  |                                                 | auth       |
 |        | DELETE    | usuarios/{id}          | delete           | App\Http\Controllers\SessionsController@destroy | web        |
 |        |           |                        |                  |                                                 | auth       |
+|        | GET|HEAD  | email/resend           | verification.resend | App\Http\Controllers\Auth\VerificationController@resend | web        |
+|        | GET|HEAD  | email/verify           | verification.notice | App\Http\Controllers\Auth\VerificationController@show   | web        |
+|        | GET|HEAD  | email/verify/{id}      | verification.verify | App\Http\Controllers\Auth\VerificationController@verify | web        |
 +--------+-----------+------------------------+------------------+-------------------------------------------------+------------+
 
 */
