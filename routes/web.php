@@ -48,6 +48,8 @@ Route::get('/goto-reserve/{start_time}', function ($start_time) {
     return view('reserve.send',['start_time' => $start_time]);
 })->name('send')->middleware('auth');
 
+
+
 /*
 +--------+-----------+------------------------+------------------+-------------------------------------------------+------------+
 | Domain | Method    | URI                    | Name             | Action                                          | Middleware |

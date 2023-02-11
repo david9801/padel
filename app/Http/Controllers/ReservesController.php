@@ -7,7 +7,8 @@ use App\Models\Reserve;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendConfirmation;
 class ReservesController extends Controller
 {
     public function index()
@@ -48,9 +49,10 @@ class ReservesController extends Controller
         $reserve->email = Auth::user()->email;
         $reserve->user_id = Auth::user()->id;
         $reserve->save();
+        $reservation=$reserve;
+        Mail::to($reserve->email)->send(new SendConfirmation($reservation));
         return redirect()->route('reserves.index')->with('success', 'Reservation created successfully.');
     }
-
 
     public function destroy($id)
     {
@@ -59,4 +61,6 @@ class ReservesController extends Controller
 
         return redirect()->route('reserves.index')->with('success', 'Reservation deleted successfully.');
     }
+
+
 }
