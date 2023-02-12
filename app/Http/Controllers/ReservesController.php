@@ -62,5 +62,4 @@ class ReservesController extends Controller
         return redirect()->route('reserves.index')->with('success', 'Reservation deleted successfully.');
     }
 
-
 }
