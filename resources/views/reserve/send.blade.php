@@ -12,12 +12,7 @@
             border-radius: 5px;
         }
     </style>
-    @php
-        $start_time = Request::segment(2);
-        $date = DateTime::createFromFormat('d-m-Y-H:i', $start_time);
-        $formatted_date = $date->format('Y-m-d\TH:i');
-        $formatted_date_f = $date->modify('+1 hour')->format('Y-m-d\TH:i');
-    @endphp
+
 
     <form action="{{route('reserves.store')}}" method="post" class="text-center">
         @csrf

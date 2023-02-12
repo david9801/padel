@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Models\Reserve;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendConfirmation;
+use DateTime;
 class ReservesController extends Controller
 {
     public function index()
@@ -61,5 +64,17 @@ class ReservesController extends Controller
 
         return redirect()->route('reserves.index')->with('success', 'Reservation deleted successfully.');
     }
+
+    public function time($start_time)
+    {
+        $date = DateTime::createFromFormat('d-m-Y-H:i', $start_time);
+        $formatted_date = $date->format('Y-m-d\TH:i');
+        $formatted_date_f = $date->modify('+1 hour')->format('Y-m-d\TH:i');
+        return view('reserve.send', [
+            'formatted_date' => $formatted_date,
+            'formatted_date_f' => $formatted_date_f
+        ]);
+    }
+
 
 }

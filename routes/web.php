@@ -46,9 +46,8 @@ Route::put('/user-edit/{id}',[SessionsController::class,'edit'])->name('edit-use
 
 Route::resource('reserves',ReservesController::class)->middleware('auth');
 
-Route::get('/goto-reserve/{start_time}', function ($start_time) {
-    return view('reserve.send',['start_time' => $start_time]);
-})->name('send')->middleware('auth');
+
+Route::get('/goto-reserve/{start_time}', [ReservesController::class,'time'])->name('send')->middleware('auth');
 
 Route::get('email/verify', [VerificationController::class,'show'])->name('verification.notice');
 Route::get('email/verify/{id}', [VerificationController::class,'verify'])->name('verification.verify');
