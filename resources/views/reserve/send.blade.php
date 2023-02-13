@@ -17,13 +17,11 @@
     <form action="{{route('reserves.store')}}" method="post" class="text-center">
         @csrf
         <input type="text" class="bg-light-blue text-center" placeholder="Title" name="title">
-
         <input type="datetime-local" readonly class="bg-light-blue text-center" name="start_time" value="{{ $formatted_date }}">
-        <input type="datetime-local" readonly class="bg-light-blue text-center" name="start_time" value="{{ $formatted_date_f }}">
+        <input type="datetime-local" readonly class="bg-light-blue text-center" name="end_time" value="{{ $formatted_date_f }}">
         <input type="number" class="bg-light-blue text-center" placeholder="Court number" name="court_number">
-        @if (auth()->check())
-        <input type="text" readonly  class="bg-light-blue text-center" value="{{$email = \App\Models\User::find(1)->email}}" name="email">
-        @endif
+        <input type="text" readonly  class="bg-light-blue text-center" value="{{ auth()->user()->email }}" name="email">
+
         <button type="submit" class="btn btn-primary" > SEND</button>
     </form>
 @endsection

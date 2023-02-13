@@ -42,14 +42,12 @@ class ReservesController extends Controller
         //$reservation = Reserve::create($validatedData);con esto "funciona"
         //$reservation = Reserve::create($validatedData);
         //Añado los datos uno a uno a la reserva para no tener problemas con user_id, que es el mismo que el id de la tabla user
-      /*
-        */
         $reserve = new Reserve();
         $reserve->title = $request->title;
         $reserve->start_time = $request->start_time;
         $reserve->end_time = $request->end_time;
         $reserve->court_number = $request->court_number;
-        $reserve->email = Auth::user()->email;
+        $reserve->email = $request->email;
         $reserve->user_id = Auth::user()->id;
         $reserve->save();
         $reservation=$reserve;

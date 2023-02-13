@@ -11,7 +11,7 @@
             color: #333;
             border-radius: 5px;
             overflow: hidden;
-            margin-top: 110px;
+            margin-top: 30px;
             text-align: center;
         }
 
@@ -38,9 +38,13 @@
         #table-create .bi {
             font-size: 9px;
         }
-        #court-selector{
-
+        #but{
+            margin-top: 80px;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
         }
+
     </style>
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -51,6 +55,7 @@
             </ul>
         </div>
     @endif
+
     <table class="table table-bordered" id="table-create">
         <thead>
         <tr>
@@ -70,10 +75,8 @@
                 @for($j = 1; $j <= 7; $j++)
                     <td>
                         @php
-                            $date = date('d/m/Y');
-                            $formattedDate = date('d/m/Y', strtotime($date));
-                            $parts = explode('/', $formattedDate);
-                            $formattedDate = $parts[1].'-'.$parts[0].'-'.$parts[2];
+                            $currentDate = new \DateTime();
+                            $formattedDate = $currentDate->format('d-m-Y');
                             $url = '/goto-reserve/' . $formattedDate . '-' . $selectedDate;
                         @endphp
                         <a href="{{ $url }}" method="get">
@@ -85,4 +88,40 @@
             </tr>
         @endfor
         </tbody>
+
+        <script>
+            function previousWeek() {
+                var date = new Date();
+                date.setDate(date.getDate() - 7);
+                window.location.href = '/reserves/create/' + formatDate(date);
+            }
+
+            function nextWeek() {
+                var date = new Date();
+                date.setDate(date.getDate() + 7);
+                window.location.href = '/reserves/create/' + formatDate(date);
+            }
+
+            function formatDate(date) {
+                var dd = date.getDate();
+                var mm = date.getMonth() + 1;
+                var yyyy = date.getFullYear();
+                if (dd < 10) {
+                    dd = '0' + dd;
+                }
+                if (mm < 10) {
+                    mm = '0' + mm;
+                }
+                return dd + '/' + mm + '/' + yyyy;
+            }
+
+        </script>
+
+        <div id="but" >
+            <button class="btn btn-primary center-block" onclick="previousWeek()">Semana anterior</button>
+            <button class="btn btn-primary center-block" onclick="nextWeek()">Semana siguiente</button>
+        </div>
+
+
+
 @endsection

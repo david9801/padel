@@ -46,6 +46,7 @@ Route::put('/user-edit/{id}',[SessionsController::class,'edit'])->name('edit-use
 
 Route::resource('reserves',ReservesController::class)->middleware('auth');
 
+Route::post('reserves', [ReservesController::class, 'store'])->name('reserves.store')->middleware('auth');
 
 Route::get('/goto-reserve/{start_time}', [ReservesController::class,'time'])->name('send')->middleware('auth');
 
