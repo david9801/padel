@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Reserve;
 use App\Models\User;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Log;
@@ -25,10 +26,16 @@ class ReservesController extends Controller
         return view('reserve.reserves', compact('reservations_fe'));
     }
 
-    public function create()
+
+    public function show($time_date)
     {
-        return view('reserve.create');
+        $time = DateTime::createFromFormat('d-m-Y', $time_date);
+
+        return view('reserve.create', [
+            'time' => $time
+        ]);
     }
+
 
     public function store(Request $request)
     {

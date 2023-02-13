@@ -45,8 +45,7 @@ Route::delete('/usuarios/{id}',[SessionsController::class,'destroy'])->name('del
 Route::put('/user-edit/{id}',[SessionsController::class,'edit'])->name('edit-user')->middleware('auth');
 
 Route::resource('reserves',ReservesController::class)->middleware('auth');
-
-Route::post('reserves', [ReservesController::class, 'store'])->name('reserves.store')->middleware('auth');
+Route::get('/reserves/{time_date}', [ReservesController::class,'show'])->name('reserves.create')->middleware('auth');
 
 Route::get('/goto-reserve/{start_time}', [ReservesController::class,'time'])->name('send')->middleware('auth');
 

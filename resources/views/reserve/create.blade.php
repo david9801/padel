@@ -1,5 +1,3 @@
-
-
 @extends('layout.app')
 @section('title','Crear Reservas')
 @section('content')
@@ -75,9 +73,12 @@
                 @for($j = 1; $j <= 7; $j++)
                     <td>
                         @php
-                            $currentDate = new \DateTime();
-                            $formattedDate = $currentDate->format('d-m-Y');
+                            $url = $_SERVER['REQUEST_URI'];
+                            $dateString = explode('/', $url)[2];
+                            $date = \DateTime::createFromFormat('d-m-Y', $dateString);
+                            $formattedDate = $date->format('d-m-Y');
                             $url = '/goto-reserve/' . $formattedDate . '-' . $selectedDate;
+
                         @endphp
                         <a href="{{ $url }}" method="get">
                             @csrf
@@ -88,18 +89,19 @@
             </tr>
         @endfor
         </tbody>
-
         <script>
             function previousWeek() {
-                var date = new Date();
+                var url = window.location.href;
+                var date = new Date(url.substring(url.lastIndexOf("/") + 1, url.length).split("-").reverse().join("/"));
                 date.setDate(date.getDate() - 7);
-                window.location.href = '/reserves/create/' + formatDate(date);
+                window.location.href = '/reserves/' + formatDate(date);
             }
 
             function nextWeek() {
-                var date = new Date();
+                var url = window.location.href;
+                var date = new Date(url.substring(url.lastIndexOf("/") + 1, url.length).split("-").reverse().join("/"));
                 date.setDate(date.getDate() + 7);
-                window.location.href = '/reserves/create/' + formatDate(date);
+                window.location.href = '/reserves/' + formatDate(date);
             }
 
             function formatDate(date) {
@@ -112,16 +114,13 @@
                 if (mm < 10) {
                     mm = '0' + mm;
                 }
-                return dd + '/' + mm + '/' + yyyy;
+                return dd + '-' + mm + '-' + yyyy;
             }
-
         </script>
 
         <div id="but" >
             <button class="btn btn-primary center-block" onclick="previousWeek()">Semana anterior</button>
             <button class="btn btn-primary center-block" onclick="nextWeek()">Semana siguiente</button>
         </div>
-
-
 
 @endsection
