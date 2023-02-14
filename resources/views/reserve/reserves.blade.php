@@ -33,22 +33,18 @@
         <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Start time</th>
-                        <th scope="col">End time</th>
-                        <th scope="col">Court number</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Shift</th>
+                        <th scope="col">Day</th>
                     </tr>
         </thead>
         <tbody>
             @foreach ($reservations_fe as $row)
                     <tr>
                         <td scope="row">  {{ $row->id  }}  </td>
-                        <td>  {{ $row->title  }}  </td>
-                        <td>  {{ $row->start_time  }} </td>
-                        <td>  {{ $row->end_time  }}  </td>
-                        <td>  {{ $row->court_number  }}  </td>
                         <td>  {{ $row->email  }}  </td>
+                        <td>{{ $row->shift_id }}</td>
+                        <td>  {{ $row->day  }}  </td>
                     </tr>
             @endforeach
         </tbody>

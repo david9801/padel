@@ -15,14 +15,11 @@ class CreateReservesTable extends Migration
     {
         Schema::create('reserves', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
-            $table->DateTime('start_time');
-            $table->DateTime('end_time');
-            $table->string('court_number')->nullable();
             $table->string('email');
-            $table->timestamps();
+            $table->date('day');
+            $table->foreignId('shift_id')
+                ->constrained('shifts');
             $table->foreignId('user_id')
-                ->nullable()
                 ->constrained('users');
             //user_id es un id foraneo de la tabla reserves que va asociada a la tabla users
         });

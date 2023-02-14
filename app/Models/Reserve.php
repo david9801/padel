@@ -8,17 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Reserve extends Model
 {
     use HasFactory;
+    public $timestamps = false;
     protected $fillable = [
-        'title',
-        'start_time',
-        'end_time',
-        'court_number',
-        'email',
+        'day',
+        'shift_id',
         'user_id'
     ];
     public function user(){
         return $this->belongsTo(User::class,'user_id');
-        //una reserva pertenece a un solo user
     }
 
 }

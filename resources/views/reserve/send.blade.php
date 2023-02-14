@@ -16,20 +16,21 @@
 
     <form action="{{route('reserves.store')}}" method="post" class="text-center">
         @csrf
-        <input type="text" class="bg-light-blue text-center" placeholder="Title" name="title">
-        <input type="datetime-local" readonly class="bg-light-blue text-center" name="start_time" value="{{ $formatted_date }}">
-        <input type="datetime-local" readonly class="bg-light-blue text-center" name="end_time" value="{{ $formatted_date_f }}">
-        <input type="number" class="bg-light-blue text-center" placeholder="Court number" name="court_number">
-        <input type="text" readonly  class="bg-light-blue text-center" value="{{ auth()->user()->email }}" name="email">
 
+        <input type="text" readonly  class="bg-light-blue text-center" value="{{ auth()->user()->email }}" name="email">
+        <input type="date" class="bg-light-blue text-center" name="day">
+        <select class="bg-light-blue text-center" name="shift_id">
+            @foreach(\App\Models\Shift::all() as $shift)
+                <option value="{{$shift->id}}">{{$shift->description}}</option>
+            @endforeach
+        </select>
+
+        <!--
+        hay que mandarle por este form :    id (de la reserva); email(pq quiero); day ;shift_id y user_id.
+        user_id no lo escribo porque en reservescontroller el metodo store me lo manda directamente
+        <input type="number" class="bg-light-blue text-center" name="shift_id">
+          -->
         <button type="submit" class="btn btn-primary" > SEND</button>
     </form>
 @endsection
-<!--"
-funciona bien este selector pero ya me guarda bien cada reserva segun cada id de usuario, no lo tengo que elegir pues tengo bien puestas las relaciones
-        <select type="select"  name="user_id" class="bg-light-blue text-center">
-            @foreach(\App\Models\User::all() as $user)
-    <option value = "{{$user->id}}"  >     {{$user->name}}    </option>
-            @endforeach
-    </select>
-    "-->
+

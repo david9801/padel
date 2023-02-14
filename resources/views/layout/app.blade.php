@@ -25,7 +25,8 @@
         <a class="navbar-brand" href="{{route('welcome')}}"> PadelReserve <i class="bi bi-calendar-plus"></i></a>
         @auth
             <form action="{{route('logout')}}" method="POST" class="text-center">
-                <button type="submit" class="btn btn-light" > <i class="fa-solid fa-right-from-bracket"> Usuario {{Auth::user()->name}}</i> </button>
+
+                <button type="submit" class="btn btn-light" > <i class="fa-solid fa-right-from-bracket"> Log Out {{Auth::user()->name}}</i> </button>
                 @csrf
             </form>
         @endauth
@@ -55,7 +56,7 @@
                         <a class="nav-link active" aria-current="page" href="{{route('reserves.index')}}"> <i class="bi bi-calendar-plus"></i> Mis reservas</a>
                     </li>
                         <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{route('reserves.create', ['time_date' => Carbon\Carbon::now()->format('d-m-Y')])}}">
+                        <a class="nav-link active" aria-current="page" href="{{route('reserves.create')}}">
                             <i class="bi bi-patch-plus-fill"></i> Crear reservas
                         </a>
                         </li>

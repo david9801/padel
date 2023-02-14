@@ -32,7 +32,7 @@ use Illuminate\Queue\SerializesModels;
             ->subject('Confirmación de reserva de pista de pádel')
             ->view('emails.confirmationreserve')
             ->with([
-            'reservation' => $this->reservation
+            'reservation' => $this->reservation,
             ]);
 
         }

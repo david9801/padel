@@ -42,7 +42,7 @@
     </div>
     <h1>Confirmación de reserva de pista de pádel</h1>
     <p>Estimado/a {{ $reservation->user->name }},</p>
-    <p>Le confirmamos su reserva de la pista de pádel número {{ $reservation->court_number }} el {{ $reservation->date }} desde {{ $reservation->start_time }} hasta {{ $reservation->end_time }}.</p>
+    <p>Le confirmamos su reserva de la pista de pádel número AÚN NO IMPLEMENTADO el {{ $reservation->day }} en el turno.</p>
     <p>Si tiene alguna pregunta o desea cambiar su reserva, por favor no dude en contactarnos.</p>
     <p>Gracias por utilizar nuestro servicio de reserva de pistas de pádel.</p>
     <p>Atentamente,<br>El equipo de reserva de pistas de pádel</p>

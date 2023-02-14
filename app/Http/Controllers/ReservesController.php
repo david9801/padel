@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Reserve;
 use App\Models\User;
+use App\Models\Shift;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
@@ -27,40 +28,35 @@ class ReservesController extends Controller
     }
 
 
-    public function show($time_date)
+    public function create()
     {
-        $time = DateTime::createFromFormat('d-m-Y', $time_date);
-
-        return view('reserve.create', [
-            'time' => $time
-        ]);
+        return view('reserve.create');
     }
 
+    public function send(){
+        return view('reserve.send');
+    }
 
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'title' => 'required',
-            'start_time' => 'required',
-            'end_time' => 'required',
-            'court_number' => 'required',
             'email' => 'required|email',
+            'shift_id' => 'required|exists:shifts,id',
+            'day' => 'required|date',
         ]);
-        //$reservation = Reserve::create($validatedData);con esto "funciona"
-        //$reservation = Reserve::create($validatedData);
-        //Añado los datos uno a uno a la reserva para no tener problemas con user_id, que es el mismo que el id de la tabla user
+
         $reserve = new Reserve();
-        $reserve->title = $request->title;
-        $reserve->start_time = $request->start_time;
-        $reserve->end_time = $request->end_time;
-        $reserve->court_number = $request->court_number;
-        $reserve->email = $request->email;
+        $reserve->shift_id = $validatedData['shift_id'];
+        $reserve->email = Auth::user()->email;
+        $reserve->day = $validatedData['day'];
         $reserve->user_id = Auth::user()->id;
         $reserve->save();
         $reservation=$reserve;
         Mail::to($reserve->email)->send(new SendConfirmation($reservation));
         return redirect()->route('reserves.index')->with('success', 'Reservation created successfully.');
     }
+
+
 
     public function destroy($id)
     {
@@ -70,16 +66,7 @@ class ReservesController extends Controller
         return redirect()->route('reserves.index')->with('success', 'Reservation deleted successfully.');
     }
 
-    public function time($start_time)
-    {
-        $date = DateTime::createFromFormat('d-m-Y-H:i', $start_time);
-        $formatted_date = $date->format('Y-m-d\TH:i');
-        $formatted_date_f = $date->modify('+1 hour')->format('Y-m-d\TH:i');
-        return view('reserve.send', [
-            'formatted_date' => $formatted_date,
-            'formatted_date_f' => $formatted_date_f
-        ]);
-    }
+
 
 
 }
