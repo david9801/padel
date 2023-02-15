@@ -18,6 +18,7 @@ class ReservesController extends Controller
 {
     public function index()
     {
+        //metodo index para mostrar las reservas de un solo user
                 $today = Carbon::now();
                 $weekAgo = $today->subDays(7);
                 //para no poner en la pagina reservas de hace muchos dias establecemos el dia actual -7 dias para mostrar reservas, aunque podria ser value:1
@@ -29,7 +30,14 @@ class ReservesController extends Controller
 
     public function create()
     {
-        return view('reserve.create');
+        //metodo create aprovechado para mostrar las reservas de todos los user-> asi tenemos calendario de reservas y el user ve que turnos/dias hay pista libre
+        //aprovechado del resource de ReservesController de web.php para no configurar mas rutas en dicho fichero
+        $today = Carbon::now();
+        //quiero mostrar las reservas de todos los users con fecha mayor o igual al dia actual
+        $reservations_f = Reserve::with('user')
+            ->where('day', '>=', $today)
+            ->get();
+        return view('reserve.create',compact('reservations_f'));
     }
 
     public function send(){
