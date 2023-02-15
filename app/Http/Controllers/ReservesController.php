@@ -13,15 +13,16 @@ use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendConfirmation;
-use DateTime;
+
 class ReservesController extends Controller
 {
     public function index()
     {
+                $today = Carbon::now();
+                $weekAgo = $today->subDays(7);
+                //para no poner en la pagina reservas de hace muchos dias establecemos el dia actual -7 dias para mostrar reservas, aunque podria ser value:1
         $user = auth()->user();
-        //nos aseguremos que el user esté autenticado (deberia funcionar igual)
-        //nos aseguramos de coger la reserva correcta a traves de su id, pàra luego buscar la descripcion en funcion de su id
-        $reservations_fe = $user->reserveS;
+        $reservations_fe = $user->reserveS()->where('day', '>=', $weekAgo)->get();
         return view('reserve.reserves', compact('reservations_fe',));
     }
 

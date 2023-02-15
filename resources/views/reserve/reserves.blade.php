@@ -34,15 +34,45 @@
             <th scope="col">Email</th>
             <th scope="col">Day</th>
             <th scope="col">Shift</th>
+            <th scope="col"> Cancell Reserve</th>
         </tr>
         </thead>
         <tbody>
         @foreach ($reservations_fe as $row)
             <tr>
                 <td scope="row">{{ $row->id }}</td>
-                <td>{{ $row->email }}</td>
-                <td>{{ $row->day }}</td>
+                <td> {{ $row->email }}</td>
+                <td> {{ $row->day }}</td>
                 <td> {{$row->shift->description}} </td>
+
+                <td >
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" >
+                        <i class="fa-solid fa-trash" ></i>
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Reserve</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to cancel the reservation?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <form action="{{route('reserves.destroy',$row->id)}}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger">Delete</i> </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
             </tr>
         @endforeach
         </tbody>
@@ -50,4 +80,3 @@
 
 
 @endsection
-
