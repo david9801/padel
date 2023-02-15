@@ -42,6 +42,17 @@ DB_DATABASE=padel
 DB_USERNAME=root
 DB_PASSWORD=*******
 ```
+Además, se usa mailtrap como mail-testing con los datos que se muestran en .env
+```
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=1557d5fd7da5a0
+MAIL_PASSWORD=30404a3a16bfab
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=padelreserves@padelenergy.es
+```
+
 En el caso de emplear Laravel con MySQL:
 Debes ir a /config/database.php y buscar 'engine':
 
@@ -57,9 +68,11 @@ Una vez se ha realizado el paso anterior:
 
 ### 3. Rellenar los datos en las tablas de las bbdd
 
-En el proceso de registro (darse de alta) se distingue 2 roles:admin y cliente
-
-`php artisan db:seed --class=RolesTableSeeder`
+Para que funcione correctamente el servicio has de ejecutar los seed (user,shift y court).
+User es opcional, pero te ahorras el proceso de registro y verificacion por e-mail.
+Shift (turnos) y court(pistas) es obligatorio.
+Ejecutar las 3 a la vez con el siguiente comando:
+`php artisan db:seed`
 
 ## Componentes del proyecto
 ### 1. Desde la navbar sin estar logueado
@@ -69,9 +82,9 @@ Opciones->
 `User`
 
 ### 2. Desde la navbar si se está logueado
-Opciones-> Se desmuestra las opciones user y se añade la opcion: `Reserve`
+Opciones-> Varía las opciones user y se añade la opcion: `Reserve`
 
 ## Consideraciones
 Se han hecho las siguientes consideraciones para el proyecto
 ### Relaciones
-Un usuario pùede reservar varias pistas, una pista solo puede ser reservada por un usuario. Además de momento el num_court no es relevante hasta que siga avanzando en el proyecto
+Aún no terminado las relaciones, mira los modelos para resolver tus dudas! :)
