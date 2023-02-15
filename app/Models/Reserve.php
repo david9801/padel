@@ -16,6 +16,11 @@ class Reserve extends Model
     ];
     public function user(){
         return $this->belongsTo(User::class,'user_id');
+        //una reserva pertenece a un solo user
+    }
+    public function shift(){
+        return $this->belongsTo(Shift::class,'shift_id');
+        //una reserva pertenece a un solo turno (shift)
     }
 
 }

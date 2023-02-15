@@ -20,11 +20,9 @@ class ReservesController extends Controller
     {
         $user = auth()->user();
         //nos aseguremos que el user esté autenticado (deberia funcionar igual)
-        //$reservations_fe = Reserve::all(); cambiamos coger todas las reservas por solo las reservas del usuario en concreto
+        //nos aseguramos de coger la reserva correcta a traves de su id, pàra luego buscar la descripcion en funcion de su id
         $reservations_fe = $user->reserveS;
-
-
-        return view('reserve.reserves', compact('reservations_fe'));
+        return view('reserve.reserves', compact('reservations_fe',));
     }
 
 

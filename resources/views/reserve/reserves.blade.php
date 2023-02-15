@@ -27,27 +27,27 @@
         }
     </style>
 
-
-
     <table class="table" id="table-reserve">
         <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Shift</th>
-                        <th scope="col">Day</th>
-                    </tr>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Email</th>
+            <th scope="col">Day</th>
+            <th scope="col">Shift</th>
+        </tr>
         </thead>
         <tbody>
-            @foreach ($reservations_fe as $row)
-                    <tr>
-                        <td scope="row">  {{ $row->id  }}  </td>
-                        <td>  {{ $row->email  }}  </td>
-                        <td>{{ $row->shift_id }}</td>
-                        <td>  {{ $row->day  }}  </td>
-                    </tr>
-            @endforeach
+        @foreach ($reservations_fe as $row)
+            <tr>
+                <td scope="row">{{ $row->id }}</td>
+                <td>{{ $row->email }}</td>
+                <td>{{ $row->day }}</td>
+                <td> {{$row->shift->description}} </td>
+            </tr>
+        @endforeach
         </tbody>
     </table>
 
+
 @endsection
+

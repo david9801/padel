@@ -50,6 +50,7 @@ class User extends Authenticatable implements MustVerifyEmail
     //-> Entonces hacemos una relacion uno a muchos. Un usuario puede hacer varias reservas. Una reserva solo esta hecha por un usuario
     public function reserveS(){
         return $this->hasMany(Reserve::class,'user_id');
+        //un user puede tener varias reservas
     }
 
 

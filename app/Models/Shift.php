@@ -27,5 +27,10 @@ class Shift extends Model
     const DE_17_A_18 = 9;
     const DE_18_A_19 = 10;
 
+    public function reserveS(){
+        return $this->hasMany(Reserve::class,'user_id');
+        //un turno puede tener varias reservas
+    }
+
 
 }
