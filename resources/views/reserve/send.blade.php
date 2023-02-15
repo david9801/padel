@@ -24,13 +24,18 @@
                 <option value="{{$shift->id}}">{{$shift->description}}</option>
             @endforeach
         </select>
-
-        <!--
-        hay que mandarle por este form :    id (de la reserva); email(pq quiero); day ;shift_id y user_id.
-        user_id no lo escribo porque en reservescontroller el metodo store me lo manda directamente
-        <input type="number" class="bg-light-blue text-center" name="shift_id">
-          -->
         <button type="submit" class="btn btn-primary" > SEND</button>
     </form>
+
+    @if ($errors->any())
+        <div class="alert alert-danger d-flex justify-content-center">
+            <ul class="text-center">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
 @endsection
 

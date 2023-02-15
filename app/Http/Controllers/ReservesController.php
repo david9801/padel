@@ -40,8 +40,29 @@ class ReservesController extends Controller
         $validatedData = $request->validate([
             'email' => 'required|email',
             'shift_id' => 'required|exists:shifts,id',
-            'day' => 'required|date',
+            'day' => 'required|date|after:tomorrow',
+        ], [
+            'shift_id.required' => 'Por favor, selecciona un turno válido',
+            'shift_id.exists' => 'Lo sentimos, este turno no existe',
+            'day.required' => 'Por favor, selecciona una fecha',
+            'day.date' => 'Por favor, selecciona una fecha valida',
+            'day.after' => 'Por favor, selecciona una fecha en la que puedas venir, este día ya ha pasado',
         ]);
+
+
+        // Verificar si ya existe una reserva para el turno y el día dados
+        $existingReservation = Reserve::where('shift_id', $validatedData['shift_id'])
+            ->where('day', $validatedData['day'])
+            ->first();
+
+        if ($existingReservation) {
+            // Agregar un error de validación personalizado si ya existe una reserva
+            $request->validate([
+                'shift_id' => 'unique:reserves,shift_id,NULL,id,day,' . $validatedData['day'],
+            ], [
+                'shift_id.unique' => 'Ya hay una reserva para este turno en este día, prueba otro por favor ',
+            ]);
+        }
 
         $reserve = new Reserve();
         $reserve->shift_id = $validatedData['shift_id'];
@@ -49,10 +70,11 @@ class ReservesController extends Controller
         $reserve->day = $validatedData['day'];
         $reserve->user_id = Auth::user()->id;
         $reserve->save();
-        $reservation=$reserve;
+        $reservation = $reserve;
         Mail::to($reserve->email)->send(new SendConfirmation($reservation));
         return redirect()->route('reserves.index')->with('success', 'Reservation created successfully.');
     }
+
 
 
 
