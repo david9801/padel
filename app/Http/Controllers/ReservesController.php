@@ -59,18 +59,18 @@ class ReservesController extends Controller
             'day.after' => 'Por favor, selecciona una fecha en la que puedas venir, este día ya ha pasado',
         ]);
 
-
-        // Verificar si ya existe una reserva para el turno y el día dados
-        $existingReservation = Reserve::where('shift_id', $validatedData['shift_id'])
+        // Verificar si ya existe una reserva para la pista, turno y día dados
+        $existingReservation = Reserve::where('pista_id', $validatedData['pista_id'])
+            ->where('shift_id', $validatedData['shift_id'])
             ->where('day', $validatedData['day'])
             ->first();
 
         if ($existingReservation) {
-            // Agregar un error de validación personalizado si ya existe una reserva
+            // Agregar un error de validación personalizado si ya existe una reserva para la pista, turno y día dados
             $request->validate([
-                'shift_id' => 'unique:reserves,shift_id,NULL,id,day,' . $validatedData['day'],
+                'pista_id' => 'unique:reserves,pista_id,NULL,id,shift_id,' . $validatedData['shift_id'] . ',day,' . $validatedData['day'],
             ], [
-                'shift_id.unique' => 'Ya hay una reserva para este turno en este día, prueba otro por favor ',
+                'pista_id.unique' => 'Lo sentimos, la pista ya ha sido reservada ...',
             ]);
         }
 
@@ -85,6 +85,7 @@ class ReservesController extends Controller
         Mail::to($reserve->email)->send(new SendConfirmation($reservation));
         return redirect()->route('reserves.index')->with('success', 'Reservation created successfully.');
     }
+
 
 
 
