@@ -69,6 +69,26 @@ class SessionsController extends Controller
         return redirect()->route('reserves.index')->with('success', 'Password updated successfully!');
     }
 
+    public function upload(Request $request, $id)
+    {
+        Log::error('entra en upload');
+        $user = User::findOrFail($id);
+        Log::error('error pre hasfile');
+        if ($request->hasFile('profile_image')) {
+            $image = $request->file('profile_image');
+            $filename = $image->getClientOriginalName();
+            $path = $image->storeAs('profile_images', $filename);
+            // Actualizar el nombre de archivo en la base de datos
+            $user->profile_image = $filename;
+            Log::error('error pre save');
+            $user->save();
+
+            return redirect()->route('reserves.index')->with('success', 'Foto de perfil subida correctamente.');
+        } else {
+            return redirect()->back()->withErrors(['profile_image' => 'Por favor, seleccione un archivo de imagen.']);
+        }
+    }
+
 
     public function logout(Request $request)
     {

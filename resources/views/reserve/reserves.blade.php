@@ -9,7 +9,7 @@
             color: #333;
             border-radius: 5px;
             overflow: hidden;
-            margin-top: 90px;
+            margin-top: 250px;
         }
 
         #table-reserve thead th{
@@ -26,6 +26,15 @@
             background-color: #f2f2f2;
         }
     </style>
+
+
+        <div style="margin-top: 150px;">
+            @if(!is_null(Auth::user()->profile_image))
+                <img src="{{ asset('storage/profile_images/'.Auth::user()->profile_image) }}" alt="Profile Image" width="1000" height="1000">
+            @endif
+        </div>
+
+
     <table class="table" id="table-reserve">
         <thead>
         <tr>

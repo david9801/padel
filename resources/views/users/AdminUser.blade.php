@@ -43,9 +43,21 @@
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
             width: 500px;
         }
+        #change3 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #4a5568;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            width: 500px;
+        }
+
 
     </style>
-    <div style="margin-top: 90px ;text-align: center ">
+    <div style="margin-top: 45px ;text-align: center ">
 
         <form action="{{ route('edit-user', ['id' => Auth::user()->id]) }}" method="POST" id="change">
             @method('PUT')
@@ -71,12 +83,18 @@
             <button type="submit" class="btn btn-primary" id="but">Cambiar contraseña</button>
         </form>
 
-
-
         <form action="{{route('delete', ['id' => Auth::user()->id])}}" method="POST" id="change2">
             @method('DELETE')
             @csrf
             <button type="submit" class="btn btn-danger"> <i class="bi bi-trash3-fill"></i> Usuario {{Auth::user()->name}}</i> </button>
+        </form>
+
+        <form action="{{ route('up', ['id' => Auth::user()->id]) }}" method="POST" id="change3" enctype="multipart/form-data">
+            @method('PUT')
+            @csrf
+            <label for="profile_image">Foto de perfil</label>
+            <input type="file" name="profile_image" id="profile_image">
+            <button type="submit" class="btn btn-primary" id="but">Enviar imagen</button>
         </form>
 
     </div>
