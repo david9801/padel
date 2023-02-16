@@ -21,6 +21,9 @@ class CreateReservesTable extends Migration
                 ->constrained('shifts');
             $table->foreignId('user_id')
                 ->constrained('users');
+            $table->foreignId('pista_id')
+                ->constrained('pistas');
+
             //user_id es un id foraneo de la tabla reserves que va asociada a la tabla users
         });
     }

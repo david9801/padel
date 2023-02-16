@@ -26,7 +26,6 @@
             background-color: #f2f2f2;
         }
     </style>
-
     <table class="table" id="table-reserve">
         <thead>
         <tr>
@@ -34,7 +33,8 @@
             <th scope="col">Email</th>
             <th scope="col">Day</th>
             <th scope="col">Shift</th>
-            <th scope="col"> Cancell Reserve</th>
+            <th scope="col">Court</th>
+            <th scope="col">Cancel Reserve</th>
         </tr>
         </thead>
         <tbody>
@@ -44,7 +44,7 @@
                 <td> {{ $row->email }}</td>
                 <td> {{ $row->day }}</td>
                 <td> {{$row->shift->description}} </td>
-
+                <td>  {{$row->pista->numero}}  </td>
                 <td >
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" >

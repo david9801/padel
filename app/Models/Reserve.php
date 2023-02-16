@@ -12,7 +12,8 @@ class Reserve extends Model
     protected $fillable = [
         'day',
         'shift_id',
-        'user_id'
+        'user_id',
+        'pista_id'
     ];
     public function user(){
         return $this->belongsTo(User::class,'user_id');
@@ -22,5 +23,10 @@ class Reserve extends Model
         return $this->belongsTo(Shift::class,'shift_id');
         //una reserva pertenece a un solo turno (shift)
     }
+    public function pista(){
+        return $this->belongsTo(Pista::class,'pista_id');
+        //una reserva pertenece a un solo turno (shift)
+    }
+
 
 }

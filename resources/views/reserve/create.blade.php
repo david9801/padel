@@ -5,14 +5,15 @@
     <style>
         body {
             background-color: black;
-            margin-top: 90px;
+            margin-top: 80px;
+            color: #2196f3;
         }
         #table-reserve{
             background-color: #fff;
             color: #333;
             border-radius: 5px;
             overflow: hidden;
-            margin-top: 70px;
+            margin-top: 50px;
         }
 
         #table-reserve thead th{
@@ -37,11 +38,13 @@
                 <i class="bi bi-alarm-fill"></i> Reserva una PISTA!
             </button>
         </a>
+        <h3>Asi de ocupadas tenemos nuestras instalaciones : </h3>
         <table class="table" id="table-reserve">
             <thead>
                 <tr>
                     <th scope="col">Day</th>
                     <th scope="col">Shift</th>
+                    <th scope="col">Court</th>
                 </tr>
             </thead>
             <tbody>
@@ -49,6 +52,8 @@
                     <tr>
                         <td> {{ $row->day }}</td>
                         <td> {{$row->shift->description}} </td>
+                        <td> {{$row->pista->numero}} </td>
+
                     </tr>
                 @endforeach
             </tbody>

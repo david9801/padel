@@ -24,6 +24,13 @@
                 <option value="{{$shift->id}}">{{$shift->description}}</option>
             @endforeach
         </select>
+        <select class="bg-light-blue text-center" name="pista_id">
+            @foreach(\App\Models\Pista::all() as $pista)
+                <option value="{{$pista->id}}">{{$pista->numero}}</option>
+            @endforeach
+        </select>
+
+
         <button type="submit" class="btn btn-primary" > SEND</button>
     </form>
 

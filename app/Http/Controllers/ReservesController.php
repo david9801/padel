@@ -50,6 +50,7 @@ class ReservesController extends Controller
             'email' => 'required|email',
             'shift_id' => 'required|exists:shifts,id',
             'day' => 'required|date|after:tomorrow',
+            'pista_id' =>'required|exists:pistas,id'
         ], [
             'shift_id.required' => 'Por favor, selecciona un turno válido',
             'shift_id.exists' => 'Lo sentimos, este turno no existe',
@@ -78,6 +79,7 @@ class ReservesController extends Controller
         $reserve->email = Auth::user()->email;
         $reserve->day = $validatedData['day'];
         $reserve->user_id = Auth::user()->id;
+        $reserve->pista_id = $validatedData['pista_id'];
         $reserve->save();
         $reservation = $reserve;
         Mail::to($reserve->email)->send(new SendConfirmation($reservation));
