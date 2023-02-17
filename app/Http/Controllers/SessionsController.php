@@ -110,6 +110,10 @@ class SessionsController extends Controller
         }
     }
 
+    public function admin_admin(){
+        $allusers = User::all();
+        return view('users.Management',compact('allusers'));
+    }
 
     public function logout(Request $request)
     {

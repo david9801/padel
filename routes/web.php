@@ -48,8 +48,13 @@ Route::delete('profile-delete({id}',[SessionsController::class,'deleteProfileIma
 Route::resource('reserves',ReservesController::class)->middleware('auth');
 Route::get('send-reserve',[ReservesController::class,'send'])->name('sending')->middleware('auth');
 Route::get('email/verify', [VerificationController::class,'show'])->name('verification.notice');
-Route::get('email/verify/{id}', [VerificationController::class,'verify'])->name('verification.verify');
-Route::get('email/resend', [VerificationController::class,'resend'])->name('verification.resend');
+Route::get('email/verify/{id}', [VerificationController::class,'verify'])->name('verification.verify')->middleware('auth');;
+Route::get('email/resend', [VerificationController::class,'resend'])->name('verification.resend')->middleware('auth');
+
+Route::group(['middleware' => ['role:admin']], function () {
+    Route::get('/adminpadelpage', [SessionsController::class,'admin_admin'])->name('admin-manage');
+});
+
 
 /*
 +--------+-----------+------------------------+------------------+-------------------------------------------------+------------+

@@ -61,22 +61,22 @@
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Nueva contraseña</label>
                 <input type="password" class="form-control" id="exampleInputPassword1" style="background-color:deepskyblue;" name="password">
-                @if ($errors->has('password'))
-                    <span class="invalid-feedback">
-                {{ $errors->first('password') }}
-            </span>
-                @endif
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword2" class="form-label">Confirmar contraseña</label>
                 <input type="password" class="form-control" id="exampleInputPassword2" style="background-color:deepskyblue;" name="password_confirmation">
-                @if ($errors->has('password_confirmation'))
-                    <span class="invalid-feedback">
-                {{ $errors->first('password_confirmation') }}
-            </span>
-                @endif
             </div>
             <button type="submit" class="btn btn-primary" id="but">Cambiar contraseña</button>
+            @if ($errors->any())
+                <div class="alert alert-danger d-flex justify-content-center">
+                    <ul class="text-center">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
         </form>
 
         <form id="change2">

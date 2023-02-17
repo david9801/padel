@@ -70,6 +70,16 @@
                                 <li class="nav-item">
                                     <a class="nav-link active" aria-current="page" href="{{route('admin')}}">   Admin account  </a>
                                 </li>
+
+                                @auth
+                                    @if(auth()->user()->hasRole('admin'))
+                                        <li class="nav-item">
+                                            <a class="nav-link active" aria-current="page" href="{{route('admin-manage')}} "> Private</a>
+                                        </li>
+                                    @endif
+                                @endauth
+
+
                             @endauth
                             @guest()
                             <li class="nav-item">
