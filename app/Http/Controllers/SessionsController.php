@@ -77,7 +77,7 @@ class SessionsController extends Controller
         if ($request->hasFile('profile_image')) {
             $image = $request->file('profile_image');
             $filename = $image->getClientOriginalName();
-            $path = $image->storeAs('profile_images', $filename);
+            $path = $image->storeAs('public/', $filename);
             // Actualizar el nombre de archivo en la base de datos
             $user->profile_image = $filename;
             Log::error('error pre save');
