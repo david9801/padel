@@ -32,10 +32,10 @@ class ReservesController extends Controller
     {
         //metodo create aprovechado para mostrar las reservas de todos los user-> asi tenemos calendario de reservas y el user ve que turnos/dias hay pista libre
         //aprovechado del resource de ReservesController de web.php para no configurar mas rutas en dicho fichero
-        $today = Carbon::now();
-        //quiero mostrar las reservas de todos los users con fecha mayor o igual al dia actual
+        $rest = Carbon::now()->subDays(1);
+        //quiero mostrar las reservas de todos los users con fecha mayor o igual al dia actual, pero dejo 1 dia de margen
         $reservations_f = Reserve::with('user')
-            ->where('day', '>=', $today)
+            ->where('day', '>=', $rest)
             ->get();
         return view('reserve.create',compact('reservations_f'));
     }
@@ -49,7 +49,7 @@ class ReservesController extends Controller
         $validatedData = $request->validate([
             'email' => 'required|email',
             'shift_id' => 'required|exists:shifts,id',
-            'day' => 'required|date|after:tomorrow',
+            'day' => 'required|date|after:yesterday',
             'pista_id' =>'required|exists:pistas,id'
         ], [
             'shift_id.required' => 'Por favor, selecciona un turno válido',

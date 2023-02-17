@@ -19,7 +19,17 @@
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label"  for="exampleCheck1">Check me out</label>
             </div>
+
             <button type="submit" class="btn btn-primary">Send</button>
+            @if ($errors->any())
+                <div class="alert alert-danger d-flex justify-content-center">
+                    <ul class="text-center">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </form>
     </div>
 @endsection

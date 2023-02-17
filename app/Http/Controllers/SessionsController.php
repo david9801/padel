@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\RedirectResponse;
-
+use App\Rules\ExistingEmail;
 class SessionsController extends Controller
 {
     public function login()
@@ -21,13 +21,17 @@ class SessionsController extends Controller
 
     public function dologin(Request $request)
     {
-        Log::error('antes de validar');
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
+            'email' => ['required', 'email', new ExistingEmail],
             'password' => ['required'],
+        ],  [
+            'email.required' => 'Por favor introduzca el correo.',
+            'email.email' => 'Por favor introduzca un correo válido.',
+            'email.existing_email' => 'El correo introducido no existe en la base de datos.',
+            'password.required' => 'Por favor introduzca la contraseña.',
         ]);
-        //$credentials = $request->only(['email', 'password']);
-        Log::error('flag1');
+
+
 
         if (Auth::attempt($credentials)) {
             Log::error('flag2');
