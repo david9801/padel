@@ -53,7 +53,7 @@ MAIL_ENCRYPTION=tls
 MAIL_FROM_ADDRESS=padelreserves@padelenergy.es
 ```
 
-En el caso de emplear Laravel con MySQL:
+En el caso de emplear Laravel con MySQL, asegúrate de lo siguiente:
 Debes ir a /config/database.php y buscar 'engine':
 
 'engine' => null,
