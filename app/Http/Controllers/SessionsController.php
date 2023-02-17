@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\RedirectResponse;
 
@@ -86,6 +87,22 @@ class SessionsController extends Controller
             return redirect()->route('reserves.index')->with('success', 'Foto de perfil subida correctamente.');
         } else {
             return redirect()->back()->withErrors(['profile_image' => 'Por favor, seleccione un archivo de imagen.']);
+        }
+    }
+
+    public function deleteProfileImage($id)
+    {
+        $user = User::findOrFail($id);
+        if ($user->profile_image) {
+            // Eliminar el archivo de almacenamiento
+            Storage::delete('public/' . $user->profile_image);
+            // Eliminar el nombre del archivo de la base de datos
+            $user->profile_image = null;
+            $user->save();
+
+            return redirect()->route('reserves.index')->with('success', 'Foto de perfil eliminada correctamente.');
+        } else {
+            return redirect()->back()->withErrors(['profile_image' => 'No hay ninguna foto de perfil para eliminar.']);
         }
     }
 

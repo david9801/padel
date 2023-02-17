@@ -10,7 +10,7 @@
             justify-content: space-around;
             margin-top: 90px;
         }
-        #change, #change2, #change3 {
+        #change, #change2, #change3, #change4 {
             height: 400px;
             width: 500px;
             display: flex;
@@ -27,7 +27,7 @@
             background-color: #4a5568;
         }
 
-        #change2 {
+        #change2,#change4 {
             background-color: rgba(189, 9, 9, 0.92);
         }
 
@@ -82,6 +82,7 @@
         <form action="{{route('delete', ['id' => Auth::user()->id])}}" method="POST" id="change2">
             @method('DELETE')
             @csrf
+            <p>Eliminar user</p>
             <button type="submit" class="btn btn-danger"> <i class="bi bi-trash3-fill"></i> Usuario {{Auth::user()->name}}</i> </button>
         </form>
         <form action="{{ route('up', ['id' => Auth::user()->id]) }}" method="POST" id="change3" enctype="multipart/form-data">
@@ -91,6 +92,11 @@
             <input type="file" name="profile_image" id="profile_image">
             <button type="submit" class="btn btn-primary" id="but">Enviar imagen</button>
         </form>
-
+        <form action="{{route('delete-image', ['id' => Auth::user()->id])}}" method="POST" id="change4">
+            @method('DELETE')
+            @csrf
+            <p>Eliminar foto de perfil</p>
+            <button type="submit" class="btn btn-danger"> <i class="bi bi-trash3-fill"></i> Usuario {{Auth::user()->name}}</i> </button>
+        </form>
     </div>
 @endsection

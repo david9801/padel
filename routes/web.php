@@ -44,7 +44,7 @@ Route::POST('/logout',[SessionsController::class,'logout'])->name('logout')->mid
 Route::delete('/usuarios/{id}',[SessionsController::class,'destroy'])->name('delete')->middleware('auth');
 Route::put('/user-edit/{id}',[SessionsController::class,'edit'])->name('edit-user')->middleware('auth');
 Route::put('upload-photo/{id}',[SessionsController::class,'upload'])->name('up')->middleware('auth');
-
+Route::delete('profile-delete({id}',[SessionsController::class,'deleteProfileImage'])->name('delete-image')->middleware('auth');
 Route::resource('reserves',ReservesController::class)->middleware('auth');
 Route::get('send-reserve',[ReservesController::class,'send'])->name('sending')->middleware('auth');
 Route::get('email/verify', [VerificationController::class,'show'])->name('verification.notice');
