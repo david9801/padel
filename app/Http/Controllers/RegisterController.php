@@ -35,7 +35,7 @@ class RegisterController extends Controller
         //Role::create(['name' => 'cliente']);
         //para usar los roles:
         //composer require spatie/laravel-permission
-        //creo la tabla create_permission_tables
+        //creo la tabla php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider" --tag="migrations"
         //php artisan migrate
         //y luego
         //php artisan make:seeder RolesTableSeeder creo la tabla roles y asigno los roles
