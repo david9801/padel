@@ -68,9 +68,9 @@ Una vez se ha realizado el paso anterior:
 
 ### 3. Rellenar los datos en las tablas de las bbdd
 
-Para que funcione correctamente el servicio has de ejecutar los seed (user,shift y court).
-User es opcional, pero te ahorras el proceso de registro y verificacion por e-mail.
-Shift (turnos) y court(pistas) es obligatorio.
+Para que funcione correctamente el servicio has de ejecutar los seed (user,shift court,rolestable).
+User  es opcional, pero te ahorras el proceso de registro y verificacion por e-mail.
+Shift (turnos) , court(pistas) y roles es obligatorio.
 Ejecutar las 3 a la vez con el siguiente comando:
 `php artisan db:seed`
 
@@ -85,6 +85,8 @@ Opciones->
 Opciones-> Varía las opciones user y se añade la opcion: `Reserve`
 
 ## Consideraciones
+Aún queda añadir funcionalidades de roles admin y cliente para el sistema de gestión de pistas de padel.
+Aún queda mejorar el calendario para que la experiencia del usuario final mejore.
 Se han hecho las siguientes consideraciones para el proyecto
 ### Relaciones
 Aún no terminado las relaciones, mira los modelos para resolver tus dudas! :)
