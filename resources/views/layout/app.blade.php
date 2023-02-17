@@ -19,7 +19,9 @@
     <!-- Titulo-->
     <title>PADEL-@yield('title') </title>
 </head>
-<body  class="bg-light1 d-flex flex-column min-vh-100" >
+
+
+<div  class="bg-light1 d-flex flex-column min-vh-100" >
 <nav class="navbar navbar-dark bg-dark fixed-top" >
     <div class="container-fluid">
         <a class="navbar-brand" href="{{route('welcome')}}"> PadelReserve <i class="bi bi-calendar-plus"></i></a>
@@ -89,7 +91,9 @@
         </div>
     </div>
 </nav>
-@yield('content')
+    @yield('content')
+</div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>

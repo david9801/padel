@@ -5,17 +5,34 @@
 
 
     <style>
-        #change {
+        .container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 90px;
+        }
+        #change, #change2, #change3 {
+            height: 400px;
+            width: 500px;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
-
-            margin: 50px auto;
+            margin: 50px 20px;
             padding: 30px;
-            background-color: #4a5568;
             border-radius: 10px;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-            width: 500px;
+        }
+
+        #change {
+            background-color: #4a5568;
+        }
+
+        #change2 {
+            background-color: rgba(189, 9, 9, 0.92);
+        }
+
+        #change3 {
+            background-color: #4a5568;
         }
 
         #but {
@@ -28,37 +45,16 @@
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
             cursor: pointer;
         }
-
         #but:hover {
             background-color: skyblue;
         }
-        #change2 {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 50px auto;
-            padding: 30px;
-            background-color: rgba(189, 9, 9, 0.92);
-            border-radius: 10px;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-            width: 500px;
-        }
-        #change3 {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 50px auto;
-            padding: 30px;
-            background-color: #4a5568;
-            border-radius: 10px;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-            width: 500px;
-        }
 
+        input[type=file] {
+            margin-top: 10px;
+        }
 
     </style>
-    <div style="margin-top: 45px ;text-align: center ">
-
+    <div class="container">
         <form action="{{ route('edit-user', ['id' => Auth::user()->id]) }}" method="POST" id="change">
             @method('PUT')
             @csrf
@@ -88,7 +84,6 @@
             @csrf
             <button type="submit" class="btn btn-danger"> <i class="bi bi-trash3-fill"></i> Usuario {{Auth::user()->name}}</i> </button>
         </form>
-
         <form action="{{ route('up', ['id' => Auth::user()->id]) }}" method="POST" id="change3" enctype="multipart/form-data">
             @method('PUT')
             @csrf
