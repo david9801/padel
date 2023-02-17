@@ -79,12 +79,36 @@
             <button type="submit" class="btn btn-primary" id="but">Cambiar contraseña</button>
         </form>
 
-        <form action="{{route('delete', ['id' => Auth::user()->id])}}" method="POST" id="change2">
+        <form id="change2">
+            <p>Eliminar Usuario</p>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                <i class="bi bi-trash3-fill"> Delete </i>
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Delete User</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete your user?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" form="deleteForm" class="btn btn-danger">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form action="{{route('delete', ['id' => Auth::user()->id])}}" method="POST" >
             @method('DELETE')
             @csrf
-            <p>Eliminar user</p>
-            <button type="submit" class="btn btn-danger"> <i class="bi bi-trash3-fill"></i> Usuario {{Auth::user()->name}}</i> </button>
         </form>
+
         <form action="{{ route('up', ['id' => Auth::user()->id]) }}" method="POST" id="change3" enctype="multipart/form-data">
             @method('PUT')
             @csrf
@@ -92,11 +116,38 @@
             <input type="file" name="profile_image" id="profile_image">
             <button type="submit" class="btn btn-primary" id="but">Enviar imagen</button>
         </form>
-        <form action="{{route('delete-image', ['id' => Auth::user()->id])}}" method="POST" id="change4">
+
+        <form id="change4">
+            <p>Eliminar foto de perfil</p>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                <i class="bi bi-trash3-fill"> Delete </i>
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Photo</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete the profile image?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" form="deleteForm" class="btn btn-danger">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form id="deleteForm" action="{{route('delete-image', ['id' => Auth::user()->id])}}" method="POST">
             @method('DELETE')
             @csrf
-            <p>Eliminar foto de perfil</p>
-            <button type="submit" class="btn btn-danger"> <i class="bi bi-trash3-fill"></i> Usuario {{Auth::user()->name}}</i> </button>
         </form>
+
     </div>
 @endsection
+
+
