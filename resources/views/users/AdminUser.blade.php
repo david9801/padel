@@ -79,6 +79,7 @@
 
         </form>
 
+
         <form id="change2">
             <p>Eliminar Usuario</p>
             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
@@ -98,16 +99,19 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" form="deleteForm" class="btn btn-danger">Delete</button>
+                            <button type="submit" form="delete-user-now" class="btn btn-danger">Delete</button>
                         </div>
                     </div>
                 </div>
             </div>
         </form>
-        <form action="{{route('delete', ['id' => Auth::user()->id])}}" method="POST" >
+
+        <form id="delete-user-now" action="{{route('delete', ['id' => Auth::user()->id])}}" method="POST" >
             @method('DELETE')
             @csrf
         </form>
+
+
 
         <form action="{{ route('up', ['id' => Auth::user()->id]) }}" method="POST" id="change3" enctype="multipart/form-data">
             @method('PUT')
@@ -116,6 +120,9 @@
             <input type="file" name="profile_image" id="profile_image">
             <button type="submit" class="btn btn-primary" id="but">Enviar imagen</button>
         </form>
+
+
+
 
         <form id="change4">
             <p>Eliminar foto de perfil</p>

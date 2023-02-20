@@ -75,7 +75,7 @@
                                     <form action="{{route('reserves.destroy',$row->id)}}" method="POST">
                                         @csrf
                                         @method('delete')
-                                        <button type="submit" class="btn btn-danger">Delete</i> </button>
+                                        <button type="submit" class="btn btn-danger">Delete </button>
                                     </form>
                                 </div>
                             </div>

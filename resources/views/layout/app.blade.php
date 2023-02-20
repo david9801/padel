@@ -38,19 +38,19 @@
         </button>
         <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">ACTIONS</h5>
+                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">OPCIONES</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{route('welcome')}}"> <i class="bi bi-house-door-fill"></i>   Home </a>
+                        <a class="nav-link active" aria-current="page" href="{{route('welcome')}}"> <i class="bi bi-house-door-fill"></i>   Inicio </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{route('about')}}">  <i class="bi bi-eyeglasses"></i>  About us</a>
+                        <a class="nav-link active" aria-current="page" href="{{route('about')}}">  <i class="bi bi-eyeglasses"></i>  Sobre Nosotros</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{route('carrousel')}}">  <i class="bi bi-image-fill"></i>  Images</a>
+                        <a class="nav-link active" aria-current="page" href="{{route('carrousel')}}">  <i class="bi bi-image-fill"></i>  Imágenes</a>
                     </li>
 
                     @auth()
@@ -68,13 +68,13 @@
                         <ul class="dropdown-menu dropdown-menu-dark" aria-current="page">
                             @auth()
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="{{route('admin')}}">   Admin account  </a>
+                                    <a class="nav-link active" aria-current="page" href="{{route('admin')}}">  Editar  </a>
                                 </li>
 
                                 @auth
                                     @if(auth()->user()->hasRole('admin'))
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="{{route('admin-manage')}} "> Private</a>
+                                            <a class="nav-link active" aria-current="page" href="{{route('admin-manage')}} "> Privado</a>
                                         </li>
                                     @endif
                                 @endauth
@@ -83,10 +83,10 @@
                             @endauth
                             @guest()
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{route('goto-Register')}}">   Register  </a>
+                                <a class="nav-link active" aria-current="page" href="{{route('goto-Register')}}">   Registro  </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{route('goto-Login')}}">   Login  </a>
+                                <a class="nav-link active" aria-current="page" href="{{route('goto-Login')}}">   Entrar  </a>
                             </li>
                         </ul>
                         @endguest
@@ -95,7 +95,7 @@
                 </ul>
                 <form class="d-flex mt-3" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-success" type="submit">Search</button>
+                    <button class="btn btn-success" type="submit">Buscar</button>
                 </form>
             </div>
         </div>

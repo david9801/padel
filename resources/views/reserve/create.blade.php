@@ -32,12 +32,7 @@
     </style>
 
     <div class="text-center">
-        <a href="{{ route('sending') }}" method="get">
-            @csrf
-            <button class="btn btn-primary" style="color: white; background-color: black;">
-                <i class="bi bi-alarm-fill"></i> Reserva una PISTA!
-            </button>
-        </a>
+
         <h3>Asi de ocupadas tenemos nuestras instalaciones : </h3>
         <table class="table" id="table-reserve">
             <thead>
@@ -62,6 +57,12 @@
             @csrf
             <button class="btn btn-primary" style="color: white; background-color: black;">
                 <i class="bi bi-alarm-fill"></i> Ir al calendario
+            </button>
+        </a>
+        <a href="{{ route('sending') }}" method="get">
+            @csrf
+            <button class="btn btn-primary" style="color: white; background-color: black;">
+                <i class="bi bi-alarm-fill"></i> Reserva una PISTA!
             </button>
         </a>
     </div>
