@@ -40,13 +40,17 @@ class ReservesController extends Controller
             ->get();
         return view('reserve.create',compact('reservations_f'));
     }
-    public function showcalendar()
+    public function showcalendar(Request $request)
     {
-        $reservas = Reserve::all();
+        $date = $request->input('date') ? Carbon::createFromFormat('Y-m-d', $request->input('date')) : Carbon::now();
+
+
+
         $turnos = Shift::all();
         $pistas = Pista::all();
+        $reservas = Reserve::whereDate('day', $date)->get();
 
-        return view('reserve.calendar',compact('reservas','turnos','pistas'));
+        return view('reserve.calendar',compact('reservas','turnos','pistas','date'));
     }
 
     public function send(){

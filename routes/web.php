@@ -47,7 +47,7 @@ Route::put('upload-photo/{id}',[SessionsController::class,'upload'])->name('up')
 Route::delete('profile-delete({id}',[SessionsController::class,'deleteProfileImage'])->name('delete-image')->middleware('auth');
 Route::resource('reserves',ReservesController::class)->middleware('auth');
 Route::get('send-reserve',[ReservesController::class,'send'])->name('sending')->middleware('auth');
-Route::get('calendar/reserves',[ReservesController::class,'showcalendar'])->name('calendar')->middleware('auth');
+Route::get('calendar-reserves',[ReservesController::class,'showcalendar'])->name('calendar')->middleware('auth');
 
 Route::get('email/verify', [VerificationController::class,'show'])->name('verification.notice');
 Route::get('email/verify/{id}', [VerificationController::class,'verify'])->name('verification.verify')->middleware('auth');;
