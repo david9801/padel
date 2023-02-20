@@ -20,7 +20,8 @@ class CreateReservesTable extends Migration
             $table->foreignId('shift_id')
                 ->constrained('shifts');
             $table->foreignId('user_id')
-                ->constrained('users');
+                ->constrained('users')
+                ->onDelete('cascade');
             $table->foreignId('pista_id')
                 ->constrained('pistas');
 
