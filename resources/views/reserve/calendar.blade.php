@@ -1,58 +1,92 @@
 @extends('layout.app')
-@section('title', 'Calendar')
+@section('title', 'Calendario de pistas')
 @section('content')
 
-    <div class="text-center">
-        <select id="pista-selector" onchange="changePista(this.value)" style="margin-top: 90px;">
-            @for ($i = 1; $i <= 4; $i++)
-                <option value="{{ $i }}" {{ $i == 1 ? 'selected' : '' }}>Pista {{ $i }}</option>
-            @endfor
-        </select>
-
-
-        @for ($pista = 1; $pista <= 4; $pista++)
-            <h2 style="color:blue; display: {{ $pista == 1 ? 'block' : 'none' }}">Pista {{ $pista }}</h2>
-            <table class="table" id="table-calendar-{{ $pista }}" style="margin-top: 90px;color:blue; display: {{ $pista == 1 ? 'table' : 'none' }}">
-                <thead>
-                <tr>
-                    <th scope="col">Day</th>
-                    <th scope="col">Shift</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach ($dates as $row)
-                    @if($row->pista->id == $pista)
-                        <tr>
-                            <td> {{ $row->day }}</td>
-                            <td> {{$row->shift->description}} </td>
-                        </tr>
-                    @endif
-                @endforeach
-                </tbody>
-            </table>
-        @endfor
-    </div>
-
-    <script>
-        var pistaActual = document.getElementById('pista-selector').value;
-
-        function changePista(nuevaPista) {
-            if (nuevaPista < 1 || nuevaPista > 4) {
-                location.reload();
-                return;
-            }
-
-            document.getElementById('table-calendar-' + pistaActual).style.display = 'none';
-            document.getElementById('table-calendar-' + nuevaPista).style.display = 'table';
-
-            document.querySelector('h2[style="color:blue; display: block;"]').style.display = 'none';
-            document.querySelector('h2:nth-of-type(' + nuevaPista + ')').style.display = 'block';
-
-            pistaActual = nuevaPista;
-            location.reload();
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #ccc;
+            margin-bottom: 30px;
+            background-color: #f9f9f9;
+            font-size: 12px;
         }
 
-    </script>
+        th, td {
+            text-align: center;
+            padding: 10px;
+        }
 
+        th {
+            background-color: #e6e6e6;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fff;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        .table-wrapper {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .table-wrapper table {
+            width: 100%;
+            background-color: #f2f2f2;
+        }
+
+        .table-wrapper h3 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+    </style>
+
+    <div class="text-center" style="margin-top: 110px;">
+        <h2 style="color: #93a3a9">Calendario de pistas</h2>
+        <div class="table-wrapper">
+            @foreach($pistas as $pista)
+
+                <table class="table">
+
+                    <thead>
+                    <tr>
+                        <th colspan="2" style="background-color: #e6e6e6; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; text-align: center; color: #333; text-transform: uppercase; letter-spacing: 2px;">
+                             {{ $pista->numero }}
+                        </th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Horario</th>
+                        <th scope="col">Estado</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    @foreach($turnos as $turno)
+                        <tr>
+                            <td>{{ $turno->description }}</td>
+                            <td>
+                                @if($reservas->where('pista_id', $pista->id)->where('shift_id', $turno->id)->count() > 0)
+                                    Ocupado
+                                @else
+                                    Libre
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            @endforeach
+        </div>
+    </div>
 
 @endsection

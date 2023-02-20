@@ -42,8 +42,11 @@ class ReservesController extends Controller
     }
     public function showcalendar()
     {
-        $dates = Reserve::all();
-        return view('reserve.calendar',compact('dates'));
+        $reservas = Reserve::all();
+        $turnos = Shift::all();
+        $pistas = Pista::all();
+
+        return view('reserve.calendar',compact('reservas','turnos','pistas'));
     }
 
     public function send(){
