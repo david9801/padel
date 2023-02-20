@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Pista;
 use Illuminate\Http\Request;
 use App\Models\Reserve;
 use App\Models\User;
@@ -38,6 +39,11 @@ class ReservesController extends Controller
             ->where('day', '>=', $rest)
             ->get();
         return view('reserve.create',compact('reservations_f'));
+    }
+    public function showcalendar()
+    {
+        $dates = Reserve::all();
+        return view('reserve.calendar',compact('dates'));
     }
 
     public function send(){

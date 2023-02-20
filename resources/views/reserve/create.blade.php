@@ -58,6 +58,12 @@
                 @endforeach
             </tbody>
         </table>
+        <a href="{{ route('calendar') }}" method="get">
+            @csrf
+            <button class="btn btn-primary" style="color: white; background-color: black;">
+                <i class="bi bi-alarm-fill"></i> Ir al calendario
+            </button>
+        </a>
     </div>
 @endsection
 
