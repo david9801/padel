@@ -2,6 +2,7 @@
 
 ![PADEL](https://raw.githubusercontent.com/david9801//padel/master/storage/app/public/logo-padel.jpg "Mira el servicio")
 ![PADEL](https://raw.githubusercontent.com/david9801//padel/master/storage/app/public/welcome.gif "Mira el servicio")
+
 Este proyecto ha sido realizado con el fin educativo con el fin de avanzar en mi carrera profesional.
 
 ## Tecnologías utilizadas
