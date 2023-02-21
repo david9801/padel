@@ -20,29 +20,27 @@
         $datevalue = $date->format('Y-m-d');
         $turno = $params['turno'];
         $pista = urldecode(trim($params['pista']));
-        echo $pista;
     @endphp
-
 
     <form action="{{route('reserves.store')}}" method="post" class="text-center">
         @csrf
         <input type="text" readonly  class="bg-light-blue text-center" value="{{ auth()->user()->email }}" name="email">
         <input type="date" class="bg-light-blue text-center" name="day" value="{{$datevalue}}">
-        <select class="bg-light-blue text-center" name="shift_id" value="{{$turno}}">
+        <select class="bg-light-blue text-center" name="shift_id">
             @foreach(\App\Models\Shift::all() as $shift)
-                <option value="{{$shift->id}}">{{$shift->description}}</option>
+                <option value="{{$shift->id}}" @if($shift->id == $turno) selected="selected" @endif>{{$shift->description}}</option>
             @endforeach
         </select>
 
         <select class="bg-light-blue text-center" name="pista_id">
-            @foreach(\App\Models\Pista::all() as $pista)
-                <option value="{{$pista->id}}" @if($pista->numero == $pista) selected="selected" @endif>{{$pista->numero}}</option>
+            @foreach(\App\Models\Pista::all() as $pistaOption)
+                <option value="{{$pistaOption->id}}" @if($pistaOption->numero == $pista) selected="selected" @endif>{{$pistaOption->numero}}</option>
             @endforeach
         </select>
 
-
         <button type="submit" class="btn btn-primary" > SEND</button>
     </form>
+
 
     @if ($errors->any())
         <div class="alert alert-danger d-flex justify-content-center">

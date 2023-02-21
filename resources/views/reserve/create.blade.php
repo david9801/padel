@@ -29,6 +29,18 @@
         #table-reserve tbody tr:nth-child(even){
             background-color: #f2f2f2;
         }
+        body::-webkit-scrollbar {
+            width: 0.1em;
+        }
+
+        body::-webkit-scrollbar-track {
+            background-color: #f5f5f5;
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background-color: #2196f3;
+        }
+
     </style>
 
     <div class="text-center">
@@ -57,12 +69,6 @@
             @csrf
             <button class="btn btn-primary" style="color: white; background-color: black;">
                 <i class="bi bi-alarm-fill"></i> Ir al calendario
-            </button>
-        </a>
-        <a href="{{ route('sending') }}" method="get">
-            @csrf
-            <button class="btn btn-primary" style="color: white; background-color: black;">
-                <i class="bi bi-alarm-fill"></i> Reserva una PISTA!
             </button>
         </a>
     </div>
