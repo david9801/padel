@@ -61,47 +61,43 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 
 /*
-+--------+-----------+------------------------+------------------+-------------------------------------------------+------------+
-| Domain | Method    | URI                    | Name             | Action                                          | Middleware |
-+--------+-----------+------------------------+------------------+-------------------------------------------------+------------+
-|        | GET|HEAD  | /                      | welcome          | Closure                                         | web        |
-|        | GET|HEAD  | aboutus                | about            | Closure                                         | web        |
-|        | GET|HEAD  | api/user               |                  | Closure                                         | api        |
-|        |           |                        |                  |                                                 | auth:api   |
-|        | POST      | do-login               | do-login         | App\Http\Controllers\SessionsController@dologin | web        |
-|        |           |                        |                  |                                                 | guest      |
-|        | POST      | do-register            | do-register      | App\Http\Controllers\RegisterController@store   | web        |
-|        |           |                        |                  |                                                 | guest      |
-|        | GET|HEAD  | galeria                | carrousel        | Closure                                         | web        |
-|        | GET|HEAD  | goto-admin             | admin            | Closure                                         | web        |
-|        |           |                        |                  |                                                 | auth       |
-|        | GET|HEAD  | login                  | goto-Login       | App\Http\Controllers\SessionsController@login   | web        |
-|        |           |                        |                  |                                                 | guest      |
-|        | POST      | logout                 | logout           | App\Http\Controllers\SessionsController@logout  | web        |
-|        |           |                        |                  |                                                 | auth       |
-|        | GET|HEAD  | register               | goto-Register    | App\Http\Controllers\RegisterController@create  | web        |
-|        |           |                        |                  |                                                 | guest      |
-|        | GET|HEAD  | reserves               | reserves.index   | App\Http\Controllers\ReservesController@index   | web        |
-|        |           |                        |                  |                                                 | auth       |
-|        | POST      | reserves               | reserves.store   | App\Http\Controllers\ReservesController@store   | web        |
-|        |           |                        |                  |                                                 | auth       |
-|        | GET|HEAD  | reserves/create        | reserves.create  | App\Http\Controllers\ReservesController@create  | web        |
-|        |           |                        |                  |                                                 | auth       |
-|        | GET|HEAD  | reserves/{reserf}      | reserves.show    | App\Http\Controllers\ReservesController@show    | web        |
-|        |           |                        |                  |                                                 | auth       |
-|        | PUT|PATCH | reserves/{reserf}      | reserves.update  | App\Http\Controllers\ReservesController@update  | web        |
-|        |           |                        |                  |                                                 | auth       |
-|        | DELETE    | reserves/{reserf}      | reserves.destroy | App\Http\Controllers\ReservesController@destroy | web        |
-|        |           |                        |                  |                                                 | auth       |
-|        | GET|HEAD  | reserves/{reserf}/edit | reserves.edit    | App\Http\Controllers\ReservesController@edit    | web        |
-|        |           |                        |                  |                                                 | auth       |
-|        | PUT       | user-edit/{id}         | edit-user        | App\Http\Controllers\SessionsController@edit    | web        |
-|        |           |                        |                  |                                                 | auth       |
-|        | DELETE    | usuarios/{id}          | delete           | App\Http\Controllers\SessionsController@destroy | web        |
-|        |           |                        |                  |                                                 | auth       |
-|        | GET|HEAD  | email/resend           | verification.resend | App\Http\Controllers\Auth\VerificationController@resend | web        |
-|        | GET|HEAD  | email/verify           | verification.notice | App\Http\Controllers\Auth\VerificationController@show   | web        |
-|        | GET|HEAD  | email/verify/{id}      | verification.verify | App\Http\Controllers\Auth\VerificationController@verify | web        |
-+--------+-----------+------------------------+------------------+-------------------------------------------------+------------+
++--------+-----------+------------------------+---------------------+------------------------------------------------------------+------------+
+| Domain | Method    | URI                    | Name                | Action                                                     | Middleware |
++--------+-----------+------------------------+---------------------+------------------------------------------------------------+------------+
+|        | GET|HEAD  | /                      | welcome             | Closure                                                    | web        |
+|        | GET|HEAD  | aboutus                | about               | Closure                                                    | web        |
+|        | DELETE    | admin-delete/{id}      | delete-all          | App\Http\Controllers\SessionsController@deleteall          | web        |
+|        |           |                        |                     |                                                            | auth       |
+|        | GET|HEAD  | adminpadelpage         | admin-manage        | App\Http\Controllers\SessionsController@admin_admin        | web        |
+|        |           |                        |                     |                                                            | role:admin |
+|        | GET|HEAD  | api/user               |                     | Closure                                                    | api        |
+|        |           |                        |                     |                                                            | auth:api   |
+|        | GET|HEAD  | calendar-reserves      | calendar            | App\Http\Controllers\ReservesController@showcalendar       | web        |
+|        |           |                        |                     |                                                            | auth       |
+|        | POST      | do-login               | do-login            | App\Http\Controllers\SessionsController@dologin            | web        |
+|        |           |                        |                     |                                                            | guest      |
+|        | POST      | do-register            | do-register         | App\Http\Controllers\RegisterController@store              | web        |
+|        |           |                        |                     |                                                            | guest      |
+|        | GET|HEAD  | email/resend           | verification.resend | App\Http\Controllers\Auth\VerificationController@resend    | web        |
+|        |           |                        |                     |                                                            | auth       |
+|        | GET|HEAD  | email/verify           | verification.notice | App\Http\Controllers\Auth\VerificationController@show      | web        |
+|        | GET|HEAD  | email/verify/{id}      | verification.verify | App\Http\Controllers\Auth\VerificationController@verify    | web        |
+|        |           |                        |                     |                                                            | auth       |
+|        | GET|HEAD  | galeria                | carrousel           | Closure                                                    | web        |
+|        | GET|HEAD  | goto-admin             | admin               | Closure                                                    | web        |
+|        |           |                        |                     |                                                            | auth       |
+|        | GET|HEAD  | login                  | goto-Login          | App\Http\Controllers\SessionsController@login              | web        |
+|        |           |                        |                     |                                                            | guest      |
+|        | POST      | logout                 | logout              | App\Http\Controllers\SessionsController@logout             | web        |
+|        |           |                        |                     |                                                            | auth       |
+|        | DELETE    | profile-delete({id}    | delete-image        | App\Http\Controllers\SessionsController@deleteProfileImage | web        |
+|        |           |                        |                     |                                                            | auth       |
+|        | GET|HEAD  | register               | goto-Register       | App\Http\Controllers\RegisterController@create             | web        |
+|        |           |                        |                     |                                                            | guest      |
+|        |           |                        |                     |                                                            | auth       |
+|        | DELETE    | usuarios/{id}          | delete              | App\Http\Controllers\SessionsController@destroy            | web        |
+|        |           |                        |                     |                                                            | auth       |
++--------+-----------+------------------------+---------------------+------------------------------------------------------------+------------+
+
 
 */

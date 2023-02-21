@@ -136,10 +136,7 @@ class SessionsController extends Controller
     public function deleteall(Request $request, $id)
     {
         try {
-            Log::error('entra en deleteall');
             $user = User::find($id);
-            Log::error('encuentra al user');
-
             $user->delete();
             return redirect()->back()->with('success', 'Usuario eliminado correctamente.');
         } catch (\Exception $e) {

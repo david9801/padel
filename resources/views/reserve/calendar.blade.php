@@ -84,7 +84,7 @@
                                         @if($reservas->where('pista_id', $pista->id)->where('shift_id', $turno->id)->count() > 0)
                                             Ocupado
                                         @else
-                                            Libre
+                                            <a href="{{ route('sending', ['turno' => $turno->id, 'fecha' => $date->format('Y-m-d'),'pista'=>$pista->numero]) }}" class="btn btn-sm btn-secondary">Reservar</a>
                                         @endif
                                     </td>
                                 </tr>
