@@ -66,6 +66,8 @@ se cambia por:
 Una vez se ha realizado el paso anterior:
 
 `php artisan migrate`
+También ejecutar el siguiente comando desde la consola de comandos para no tener problemas al mostrar la foto de perfil del usuario:
+`php artisan storage:link`
 
 ### 3. Rellenar los datos en las tablas de las bbdd
 
